@@ -1,11 +1,9 @@
-package com.mottu.mapping.api.dto;
+package com.mottu.mapping.api.dto.response;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class UnitDTO {
+public class UnitResponseDTO {
     private Long unit_id;
     private String name;
     private String address;

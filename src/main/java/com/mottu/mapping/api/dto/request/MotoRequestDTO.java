@@ -1,6 +1,5 @@
-package com.mottu.mapping.api.dto;
+package com.mottu.mapping.api.dto.request;
 
-import com.mottu.mapping.api.model.Model;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -39,7 +38,9 @@ public class MotoRequestDTO {
     @Size(max=256, message="Description can't have more than 256 characters")
     private String description;
 
-    private Long model_id;
+    @NotNull
+    private Long modelId;
 
-    private Long sector_id;
+    @NotNull
+    private Long sectorId;
 }
