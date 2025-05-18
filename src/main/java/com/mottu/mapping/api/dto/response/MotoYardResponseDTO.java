@@ -7,5 +7,12 @@ public class MotoYardResponseDTO {
     private Long yardId;
     private String description;
     private Integer capacity;
-    private UnitResponseDTO unit;
+
+    public MotoYardResponseDTO() {}
+
+    public MotoYardResponseDTO(Long yardId, String description, Integer capacity) {
+        this.yardId = yardId;
+        this.description = description;
+        this.capacity = capacity;
+    }
 }
