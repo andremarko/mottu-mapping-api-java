@@ -3,15 +3,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name="TB_MODEL")
-@AllArgsConstructor
-@NoArgsConstructor
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long model_id;
+    @Column(name="model_id")
+    private Long modelId;
     @Column(nullable = false)
-    private String model_name;
+    private String modelName;
+
+    public Model() {}
+
+    public Model(String modelName) {
+        this.modelName = modelName;
+    }
 }

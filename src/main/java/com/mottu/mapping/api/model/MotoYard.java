@@ -4,23 +4,26 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Table(name="TB_MOTO_YARD")
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class MotoYard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long yard_id;
+    @Column(name="yard_id")
+    private Long yardId;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
     private Integer capacity;
-    @ManyToOne
-    @JoinColumn(name = "unit_id", nullable = false)
-    private Unit unit;
     @OneToMany(mappedBy = "yard", cascade = CascadeType.ALL)
     private List<Sector> sectors;
+
+    public MotoYard() {}
+
+    public MotoYard(String description, Integer capacity, List<Sector> sectors) {
+        this.description = description;
+        this.capacity = capacity;
+        this.sectors = sectors;
+    }
 }

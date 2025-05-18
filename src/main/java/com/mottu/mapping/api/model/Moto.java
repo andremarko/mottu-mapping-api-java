@@ -3,31 +3,31 @@ package com.mottu.mapping.api.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-@Data
 @Table(name="TB_MOTORCYCLE")
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Moto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long motorcycle_id;
+    @Column(name="motorcycle_id")
+    private Long motorcycleId;
     @Column(nullable = false, unique = true)
     private String plate;
-    @Column(length = 17, nullable = false, unique = true)
-    private String chassis;
-    @Column(nullable = false)
-    private LocalDateTime entry;
-    @Column(nullable = true, length = 256)
-    private String description;
+    @Column(nullable = false, unique = true)
+    private String coordinates;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="model_id")
+    @JoinColumn(name="model_Id")
     private Model model;
     @ManyToOne
     @JoinColumn(name="sector_id")
     private Sector sector;
+
+    public Moto() {}
+
+    public Moto(String plate, String coordinates, Model model, Sector sector) {
+        this.plate = plate;
+        this.coordinates = coordinates;
+        this.model = model;
+        this.sector = sector;
+    }
 }
