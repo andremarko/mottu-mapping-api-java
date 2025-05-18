@@ -2,15 +2,21 @@ package com.mottu.mapping.api.dto.response;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Data
 public class MotoResponseDTO {
-    private Long motorcycleId;
-    private String plate;
-    private String chassis;
-    private ModelResponseDTO model;
-    private SectorResponseDTO sector;
-    private LocalDateTime entry;
-    private String description;
+ private Long motoId;
+ private String plate;
+ private String coordinates;
+ private ModelResponseDTO model;
+ private SectorResponseDTO sector;
+
+ public MotoResponseDTO() {}
+
+ public MotoResponseDTO(Long motoId, String plate, String coordinates, ModelResponseDTO model, SectorResponseDTO sector) {
+  this.motoId = motoId;
+  this.plate = plate;
+  this.coordinates = coordinates;
+  this.model = model;
+  this.sector = sector;
+ }
 }
