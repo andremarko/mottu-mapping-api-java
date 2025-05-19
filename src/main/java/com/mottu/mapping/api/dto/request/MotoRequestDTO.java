@@ -3,9 +3,8 @@ package com.mottu.mapping.api.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Data;
 @Data
-@Builder
 public class MotoRequestDTO {
     @NotBlank(message="License plate is required.")
     @Size(max = 8, message = "License plate cannot be longer than 8 characters.")

@@ -1,6 +1,6 @@
 package com.mottu.mapping.api.dto.response;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class MotoResponseDTO {
