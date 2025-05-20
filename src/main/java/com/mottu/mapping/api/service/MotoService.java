@@ -16,15 +16,13 @@ import com.mottu.mapping.api.repository.ModelRepository;
 import com.mottu.mapping.api.repository.MotoRepository;
 import com.mottu.mapping.api.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
+import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@CacheConfig(cacheNames = {"motos", "motosAll"})
 public class MotoService {
 
     @Autowired
@@ -56,7 +54,7 @@ public class MotoService {
         return toResponseDTO(saved);
     }
 
-    @Cacheable(value = "motosAll", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
+    @Cacheable(value = "motosAll", key = "'page:' + #pageable.pageNumber + ':size:' + #pageable.pageSize")
     public Page<MotoResponseDTO> readAll(Pageable pageable) {
         Page<Moto> page = motoRepository.findAll(pageable);
         if (page.isEmpty()) {
