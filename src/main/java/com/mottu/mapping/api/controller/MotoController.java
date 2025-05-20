@@ -25,8 +25,10 @@ public class MotoController {
     }
 
     @GetMapping
-    public Page<MotoResponseDTO> getAll(Pageable pageable) {
-        return motoService.readAll(pageable);
+    public Page<MotoResponseDTO> getAll(@RequestParam(required = false) String plate,
+                                        @RequestParam(required = false) Long sectorId,
+                                        Pageable pageable) {
+        return motoService.readAllFiltered(plate, sectorId, pageable);
     }
 
     @GetMapping("/{id}")
