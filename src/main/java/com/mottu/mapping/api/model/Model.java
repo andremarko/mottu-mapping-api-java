@@ -17,7 +17,7 @@ public class Model {
     @Column(name="model_id")
     private Long modelId;
 
-    @Column(nullable = false)
+    @Column(name="model_name", nullable = false)
     private String modelName;
 
     public Model() {}
