@@ -102,6 +102,22 @@ public class MotoService {
         motoRepository.deleteById(motoId);
     }
 
+    public Page<MotoResponseDTO> readAllFiltered(String plate, Long sectorId, Pageable pageable) {
+        if (plate != null && sectorId != null) {
+            return motoRepository.findByPlateAndSector_SectorId(plate, sectorId, pageable)
+                    .map(this::toResponseDTO);
+        } else if (plate != null) {
+            return motoRepository.findByPlate(plate, pageable)
+                    .map(this::toResponseDTO);
+        } else if (sectorId != null) {
+            return motoRepository.findBySector_SectorId(sectorId, pageable)
+                    .map(this::toResponseDTO);
+        } else {
+            return motoRepository.findAll(pageable)
+                    .map(this::toResponseDTO);
+        }
+    }
+
     private MotoResponseDTO toResponseDTO(Moto moto) {
         Sector sector = moto.getSector();
 
