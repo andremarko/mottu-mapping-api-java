@@ -36,7 +36,7 @@ public class SectorService {
         sector.setDescription(dto.getDescription());
         sector.setColorRgb(dto.getColorRgb());
         sector.setColorName(dto.getColorName());
-        sector.setMotos(null); // inicialmente sem motos
+        sector.setMotos(null);
 
         Sector saved = sectorRepository.save(sector);
         return toResponseDTO(saved);
