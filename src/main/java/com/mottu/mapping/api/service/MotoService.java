@@ -16,6 +16,10 @@ import com.mottu.mapping.api.repository.ModelRepository;
 import com.mottu.mapping.api.repository.MotoRepository;
 import com.mottu.mapping.api.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -38,6 +42,8 @@ public class MotoService {
         this.sectorRepository = sectorRepository;
     }
 
+    @CachePut(value = "motos", key = "#result.motorcycleId")
+    @CacheEvict(value= "motosAll", allEntries = true)
     public MotoResponseDTO save(MotoRequestDTO dto) {
         Model model = modelRepository.findById(dto.getModelId())
                 .orElseThrow(() -> new ModelNotFoundException(dto.getModelId()));
@@ -50,6 +56,7 @@ public class MotoService {
         return toResponseDTO(saved);
     }
 
+    @Cacheable(value = "motosAll", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
     public Page<MotoResponseDTO> readAll(Pageable pageable) {
         Page<Moto> page = motoRepository.findAll(pageable);
         if (page.isEmpty()) {
@@ -58,12 +65,15 @@ public class MotoService {
         return page.map(this::toResponseDTO);
     }
 
+    @Cacheable(value = "motos", key = "#motoId")
     public MotoResponseDTO read(Long motoId) {
         Moto moto = motoRepository.findById(motoId)
                 .orElseThrow(() -> new MotoNotFoundException(motoId));
         return toResponseDTO(moto);
     }
 
+    @CachePut(value = "motos", key = "#result.motorcycleId")
+    @CacheEvict(value = "motosAll", allEntries = true)
     public MotoResponseDTO update(Long motoId, MotoRequestDTO dto) {
         Moto existingMoto = motoRepository.findById(motoId)
                 .orElseThrow(() -> new MotoNotFoundException(motoId));
@@ -83,6 +93,10 @@ public class MotoService {
         return toResponseDTO(updated);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "motos", key = "#motoId"),
+            @CacheEvict(value = "motosAll", allEntries = true)
+    })
     public void delete(Long motoId) {
         if (!motoRepository.existsById(motoId)) {
             throw new MotoNotFoundException(motoId);

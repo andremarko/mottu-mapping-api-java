@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MotoResponseDTO {
- private Long motoId;
+ private Long motorcycleId;
  private String plate;
  private String coordinates;
  private ModelResponseDTO model;
@@ -12,8 +12,8 @@ public class MotoResponseDTO {
 
  public MotoResponseDTO() {}
 
- public MotoResponseDTO(Long motoId, String plate, String coordinates, ModelResponseDTO model, SectorResponseDTO sector) {
-  this.motoId = motoId;
+ public MotoResponseDTO(Long motorcycleId, String plate, String coordinates, ModelResponseDTO model, SectorResponseDTO sector) {
+  this.motorcycleId = motorcycleId;
   this.plate = plate;
   this.coordinates = coordinates;
   this.model = model;
