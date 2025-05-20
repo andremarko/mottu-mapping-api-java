@@ -22,4 +22,9 @@ public class ApiExceptionHandler {
   public ResponseEntity<String> handleMotoNotFound(MotoNotFoundException ex) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
   }
+
+  @ExceptionHandler(MotoYardNotFoundException.class)
+  public ResponseEntity<String> handleMotoYardNotFound(MotoYardNotFoundException ex) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+  }
 }
