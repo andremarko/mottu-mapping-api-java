@@ -16,7 +16,7 @@ public class Moto {
     @Column(nullable = false)
     private String coordinates;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="model_Id")
+    @JoinColumn(name="model_id")
     private Model model;
     @ManyToOne
     @JoinColumn(name="sector_id")
