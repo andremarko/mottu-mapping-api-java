@@ -13,7 +13,7 @@ public class Moto {
     private Long motorcycleId;
     @Column(nullable = false, unique = true)
     private String plate;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String coordinates;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="model_Id")
