@@ -493,10 +493,14 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 
 ``` bash
   git clone https://github.com/andremarko/mottu-mapping-api-java
+  cd mottu-mapping-api-java
 ```
 
 ``` bash
-  cd mottu-mapping-api-java && docker build -t mottu-mapping-backend
+  docker build \
+  --build-arg DB_USER=seu_usuario_oracle \
+  --build-arg DB_PASSWORD=sua_senha_oracle \
+  -t mottu-mapping-backend .
 ```
 ``` bash
   docker run -p 8080:8080 mottu-mapping-backend
