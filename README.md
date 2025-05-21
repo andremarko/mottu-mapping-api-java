@@ -10,18 +10,6 @@
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Dependências instaladas](#dependências-instaladas)
 - [Endpoints](#endpoints)
-  - [Entidade Moto](#entidade-moto)
-    - [Criar moto](#criar-moto)
-    - [Listar motos](#listar-motos)
-    - [Buscar moto por ID](#buscar-moto-por-id)  
-    - [Atualizar moto](#atualizar-moto)
-    - [Deletar moto](#deletar-moto)
-  - [Entidade Model](#entidade-model)
-    - [Criar modelo](#criar-modelo)
-    - [Listar modelos](#listar-modelos)
-    - [Buscar modelo por ID](#buscar-modelo-por-id)  
-    - [Atualizar modelo](#atualizar-modelo)
-    - [Deletar modelo](#deletar-modelo)
   - [Entidade MotoYard](#entidade-motoyard)
     - [Criar pátio](#criar-pátio)
     - [Listar pátios](#listar-pátios)
@@ -34,6 +22,18 @@
     - [Buscar setor por ID](#buscar-setor-por-id)  
     - [Atualizar setor](#atualizar-setor)
     - [Deletar setor](#deletar-setor)
+  - [Entidade Model](#entidade-model)
+    - [Criar modelo](#criar-modelo)
+    - [Listar modelos](#listar-modelos)
+    - [Buscar modelo por ID](#buscar-modelo-por-id)  
+    - [Atualizar modelo](#atualizar-modelo)
+    - [Deletar modelo](#deletar-modelo)
+  - [Entidade Moto](#entidade-moto)
+    - [Criar moto](#criar-moto)
+    - [Listar motos](#listar-motos)
+    - [Buscar moto por ID](#buscar-moto-por-id)  
+    - [Atualizar moto](#atualizar-moto)
+    - [Deletar moto](#deletar-moto)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
 
@@ -165,6 +165,216 @@ Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Exp
 - `spring-boot-starter-actuator`: Monitoramento e métricas da aplicação.
 ---
 ## Endpoints
+### Entidade MotoYard 
+#### Criar pátio
+- **URL**: `/api/motoyards`
+- **Método**: POST
+- **Descrição**: Cria um novo MotoYard.
+- **Body (JSON)**:
+```json
+{
+  "description": "Pátio de Pendências",
+  "capacity": 100
+}
+```
+-**Exemplo cURL**:
+``` bash
+curl -X POST "http://localhost:8080/api/motoyards" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "description": "Pátio de Pendências",
+           "capacity": 100
+         }'
+```
+#### Listar pátios
+- **URL**: ` /api/motoyards`
+- **Método**: GET
+- **Descrição**: Retorna uma lista de todos os MotoYards.
+- **Exemplo cURL**:
+```bash
+curl -X GET "http://localhost:8080/api/motoyards"
+```
+#### Buscar pátio por ID
+- **URL**: `/api/motoyards/{id}`  
+- **Método**: GET  
+- **Descrição**: Retorna os dados do MotoYard pelo ID.
+- **Exemplo cURL**:
+```bash
+curl -X GET "http://localhost:8080/api/motoyards/1"
+```
+#### Atualizar pátio
+- **URL**: `/api/motoyards/{id}`  
+- **Método**: PUT  
+- **Descrição**: Atualiza os dados do MotoYard pelo ID.
+- **Body (JSON)**:
+```json
+{
+  "description": "Pátio Pendências",
+  "capacity": 150
+}
+```
+- **Exemplo cURL**:
+``` bash
+curl -X POST "http://localhost:8080/api/motoyards" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "description": "Pátio Pendências",
+           "capacity": 150
+         }'
+```
+### Deletar pátio
+- **URL**: /api/motoyards/{id}
+- **Método**: DELETE
+- **Descrição**: Remove o MotoYard pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
+- **Exemplo cURL**:
+``` bash
+curl -X DELETE "http://localhost:8080/api/motoyards/1"
+```
+---
+### Entidade Sector
+#### Criar setor
+- **URL**: `/api/sectors`  
+- **Método**: POST  
+- **Descrição**: Cria um novo setor vinculado a um MotoYard.
+- **Body (JSON)**:
+```json
+{
+  "yardId": 1,
+  "name": "Manutenção",
+  "description": "Setor de manutenção",
+  "colorRgb": "#FFA500",
+  "colorName": "orange"
+}
+```
+- **Exemplo cURL**:
+```bash
+curl -X POST "http://localhost:8080/api/sectors" \
+     -H "Content-Type: application/json" \
+     -d '{
+            "yardId": 1,
+            "name": "Manutenção",
+            "description": "Setor de manutenção",
+            "colorRgb": "#FFA500",
+            "colorName": "orange"
+         }'
+```
+#### Listar setores
+- **URL**: `/api/sectors`  
+- **Método**: GET  
+- **Descrição**: Retorna uma lista de todos os setores.
+
+- **Exemplo cURL**:
+```bash
+curl -X GET "http://localhost:8080/api/sectors"
+```
+#### Buscar setor por ID
+- **URL**: `/api/sectors/{id}`  
+- **Método**: GET  
+- **Descrição**: Retorna os dados de um setor específico pelo ID.
+
+**Exemplo cURL**:
+```bash
+curl -X GET "http://localhost:8080/api/sectors/1"
+```
+#### Atualizar setor
+- **URL**: `/api/sectors/{id}`  
+- **Método**: PUT  
+- **Descrição**: Atualiza os dados de um setor existente.
+- **Body (JSON)**:
+```json
+{ 
+  "yardId": 1,
+  "name": "Liberadas",
+  "description": "Setor de motos liberadas",
+  "colorRgb": "#00FF00",
+  "colorName": "green"
+}
+```
+- **Exemplo cURL**:
+```bash
+curl -X PUT "http://localhost:8080/api/sectors/1" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "yardId": 1,
+           "name": "Liberadas",
+           "description": "Setor de motos liberadas",
+           "colorRgb": "#00FF00",
+           "colorName": "green"
+         }'
+```
+#### Deletar setor
+- **URL**: `/api/sectors/{id}`  
+- **Método**: DELETE  
+- **Descrição**: Remove o setor pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
+- **Exemplo cURL**:
+```bash
+curl -X DELETE "http://localhost:8080/api/sectors/1"
+```
+---
+### Entidade Model
+#### Criar modelo
+- **URL**: `/api/models`
+- **Método**: POST  
+- **Descrição**: Cria um novo modelo de moto.
+- **Body (JSON)**:
+```json
+{
+  "modelName": "Mottu Pop"
+}
+```
+- **Exemplo cURL**:
+```bash
+  curl -X POST "http://localhost:8080/api/models" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "modelName": "Mottu Pop"
+         }'
+```
+#### Listar modelos
+- **URL**: `/api/models`
+- **Método**: GET
+- **Descrição**: Retorna uma lista de todos os modelos.
+- **Exemplo cURL**:
+```bash
+curl -X GET "http://localhost:8080/api/models"
+```
+#### Buscar modelo por ID
+- **URL**: `/api/models/{id}`
+- **Método**: GET
+- **Descrição**: Retorna modelo pelo Id
+
+- **Exemplo cURL:**
+``` bash
+curl -X GET "http://localhost:8080/api/models/1"
+```
+#### Atualizar modelo
+- **URL**: `/api/models/{id}`
+- **Método**: PUT
+- **Descrição**: Atualiza os dados do modelo pelo ID.
+- **Body (JSON)**:
+```json
+{
+  "modelName": "Mottu Sport"
+}
+```
+- **Exemplo cURL**:
+``` bash
+curl -X PUT "http://localhost:8080/api/models/1" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "modelName": "Mottu Sport"
+         }'
+```
+#### Deletar modelo 
+- **URL**: `/api/models/{id}`
+- **Método**: DELETE
+- **Descrição**: Remove um modelo pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
+
+- **Exemplo cURL:**
+```bash
+curl -X DELETE "http://localhost:8080/api/models/1"
+```
+---
 ### Entidade Moto
 #### Criar moto
 - **URL**: `/api/motos`
@@ -248,241 +458,31 @@ curl -X PUT "http://localhost:8080/api/motos/1" \
 curl -X DELETE "http://localhost:8080/api/motos/1"
 ```
 ---
-### Entidade Model
-#### Criar modelo
-- **URL**: `/api/models`
-- **Método**: POST  
-- **Descrição**: Cria um novo modelo de moto.
-- **Body (JSON)**:
-```json
-{
-  "modelName": "Mottu Pop"
-}
-```
-- **Exemplo cURL**:
-```bash
-  curl -X POST "http://localhost:8080/api/models" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "modelName": "Honda CG 160"
-         }'
-```
-#### Listar modelos
-- **URL**: `/api/models`
-- **Método**: GET
-- **Descrição**: Retorna uma lista de todos os modelos.
-- **Exemplo cURL**:
-```bash
-curl -X GET "http://localhost:8080/api/models"
-```
-#### Buscar modelo por ID
-- **URL**: `/api/models/{id}`
-- **Método**: GET
-- **Descrição**: Retorna modelo pelo Id
-
-- **Exemplo cURL:**
-``` bash
-curl -X GET "http://localhost:8080/api/models/1"
-```
-#### Atualizar modelo
-- **URL**: `/api/models/{id}`
-- **Método**: PUT
-- **Descrição**: Atualiza os dados do modelo pelo ID.
-- **Body (JSON)**:
-```json
-{
-  "modelName": "Mottu Pop"
-}
-```
-- **Exemplo cURL**:
-``` bash
-curl -X PUT "http://localhost:8080/api/models/1" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "modelName": "Mottu Pop"
-         }'
-```
-#### Deletar modelo 
-- **URL**: `/api/models/{id}`
-- **Método**: DELETE
-- **Descrição**: Remove um modelo pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
-
-- **Exemplo cURL:**
-```bash
-curl -X DELETE "http://localhost:8080/api/models/1"
-```
----
-### Entidade MotoYard 
-### Criar pátio
-- **URL**: `/api/motoyards`
-- **Método**: POST
-- **Descrição**: Cria um novo MotoYard.
-- **Body (JSON)**:
-```json
-{
-  "description": "Pátio Central",
-  "capacity": 100
-}
-```
--**Exemplo cURL**:
-``` bash
-curl -X POST "http://localhost:8080/api/motoyards" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "description": "Pátio Central",
-           "capacity": 100
-         }'
-```
-#### Listar pátios
-- **URL**: ` /api/motoyards`
-- **Método**: GET
-- **Descrição**: Retorna uma lista de todos os MotoYards.
-- **Exemplo cURL**:
-```bash
-curl -X GET "http://localhost:8080/api/motoyards"
-```
-#### Buscar pátio por ID
-- **URL**: `/api/motoyards/{id}`  
-- **Método**: GET  
-- **Descrição**: Retorna os dados do MotoYard pelo ID.
-- **Exemplo cURL**:
-```bash
-curl -X GET "http://localhost:8080/api/motoyards/1"
-```
-#### Atualizar pátio
-- **URL**: `/api/motoyards/{id}`  
-- **Método**: PUT  
-- **Descrição**: Atualiza os dados do MotoYard pelo ID.
-- **Body (JSON)**:
-```json
-{
-  "description": "Pátio Atualizado",
-  "capacity": 120
-}
-```
-- **Exemplo cURL**:
-``` bash
-curl -X POST "http://localhost:8080/api/motoyards" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "description": "Pátio Atualizado",
-           "capacity": 100
-         }'
-```
-### Deletar pátio
-- **URL**: /api/motoyards/{id}
-- **Método**: DELETE
-- **Descrição**: Remove o MotoYard pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
-- **Exemplo cURL**:
-``` bash
-curl -X DELETE "http://localhost:8080/api/motoyards/1"
-```
----
-### Entidade Sector
-#### Criar setor
-- **URL**: `/api/sectors`  
-- **Método**: POST  
-- **Descrição**: Cria um novo setor vinculado a um MotoYard.
-- **Body (JSON)**:
-```json
-{
-  "yardId": 1,
-  "name": "Manutenção",
-  "description": "Setor de manutenção",
-  "colorRgb": "#FFA500",
-  "colorName": "orange"
-}
-```
-- **Exemplo cURL**:
-```bash
-curl -X POST "http://localhost:8080/api/sectors" \
-     -H "Content-Type: application/json" \
-     -d '{
-            "yardId": 1,
-            "name": "Manutenção",
-            "description": "Setor de manutenção",
-            "colorRgb": "#FFA500",
-            "colorName": "orange"
-         }'
-```
-#### Listar setores
-- **URL**: `/api/sectors`  
-- **Método**: GET  
-- **Descrição**: Retorna uma lista de todos os setores.
-
-- **Exemplo cURL**:
-```bash
-curl -X GET "http://localhost:8080/api/sectors"
-```
-#### Buscar setor por ID
-- **URL**: `/api/sectors/{id}`  
-- **Método**: GET  
-- **Descrição**: Retorna os dados de um setor específico pelo ID.
-
-**Exemplo cURL**:
-```bash
-curl -X GET "http://localhost:8080/api/sectors/1"
-```
-#### Atualizar setor
-- **URL**: `/api/sectors/{id}`  
-- **Método**: PUT  
-- **Descrição**: Atualiza os dados de um setor existente.
-- **Body (JSON)**:
-```json
-{ 
-  "yardId": 1,
-  "name": "Motos liberadas",
-  "description": "Setor de motos liberadas",
-  "colorRgb": "#00FF00",
-  "colorName": "green"
-}
-```
-- **Exemplo cURL**:
-```bash
-curl -X PUT "http://localhost:8080/api/sectors/1" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "yardId": 1,
-           "name": "Motos liberadas",
-           "description": "Setor de motos liberadas",
-           "colorRgb": "#00FF00",
-           "colorName": "green"
-         }'
-```
-#### Deletar setor
-- **URL**: `/api/sectors/{id}`  
-- **Método**: DELETE  
-- **Descrição**: Remove o setor pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
-- **Exemplo cURL**:
-```bash
-curl -X DELETE "http://localhost:8080/api/sectors/1"
-```
----
 
 ## Tabela de Endpoints
 
 | Entidade       | Operação                | Método | URL                      | Descrição                             |
-|----------------|------------------------|--------|--------------------------|-------------------------------------|
-| **Moto**       | Criar moto             | POST   | `/api/motos`             | Cria uma nova moto                   |
-|                | Listar motos           | GET    | `/api/motos`             | Lista motos com filtros e paginação |
-|                | Buscar moto por ID     | GET    | `/api/motos/{id}`        | Retorna moto pelo ID                 |
-|                | Atualizar moto por ID  | PUT    | `/api/motos/{id}`        | Atualiza dados da moto               |
-|                | Deletar moto por ID    | DELETE | `/api/motos/{id}`        | Remove moto pelo ID                  |
-| **Model**      | Criar modelo           | POST   | `/api/models`            | Cria um novo modelo                  |
-|                | Listar modelos         | GET    | `/api/models`            | Lista todos os modelos               |
-|                | Buscar modelo por ID   | GET    | `/api/models/{id}`       | Retorna modelo pelo ID               |
-|                | Atualizar modelo por ID| PUT    | `/api/models/{id}`       | Atualiza dados do modelo             |
-|                | Deletar modelo por ID  | DELETE | `/api/models/{id}`       | Remove modelo pelo ID                |
-| **MotoYard**   | Criar pátio            | POST   | `/api/motoyards`         | Cria um novo pátio                  |
-|                | Listar pátios          | GET    | `/api/motoyards`         | Lista todos os pátios                |
-|                | Buscar pátio por ID    | GET    | `/api/motoyards/{id}`    | Retorna pátio pelo ID                |
-|                | Atualizar pátio por ID | PUT    | `/api/motoyards/{id}`    | Atualiza dados do pátio              |
-|                | Deletar pátio por ID   | DELETE | `/api/motoyards/{id}`    | Remove pátio pelo ID                 |
-| **Sector**     | Criar setor            | POST   | `/api/sectors`           | Cria um novo setor vinculado a pátio|
-|                | Listar setores         | GET    | `/api/sectors`           | Lista todos os setores               |
-|                | Buscar setor por ID    | GET    | `/api/sectors/{id}`      | Retorna setor pelo ID                |
-|                | Atualizar setor por ID | PUT    | `/api/sectors/{id}`      | Atualiza dados do setor              |
-|                | Deletar setor por ID   | DELETE | `/api/sectors/{id}`      | Remove setor pelo ID                 |
+|----------------|-------------------------|--------|--------------------------|----------------------------------------|
+| **MotoYard**   | Criar pátio             | POST   | `/api/motoyards`         | Cria um novo pátio                     |
+|                | Listar pátios           | GET    | `/api/motoyards`         | Lista todos os pátios                  |
+|                | Buscar pátio por ID     | GET    | `/api/motoyards/{id}`    | Retorna pátio pelo ID                  |
+|                | Atualizar pátio por ID  | PUT    | `/api/motoyards/{id}`    | Atualiza dados do pátio                |
+|                | Deletar pátio por ID    | DELETE | `/api/motoyards/{id}`    | Remove pátio pelo ID                   |
+| **Sector**     | Criar setor             | POST   | `/api/sectors`           | Cria um novo setor vinculado a pátio  |
+|                | Listar setores          | GET    | `/api/sectors`           | Lista todos os setores                 |
+|                | Buscar setor por ID     | GET    | `/api/sectors/{id}`      | Retorna setor pelo ID                  |
+|                | Atualizar setor por ID  | PUT    | `/api/sectors/{id}`      | Atualiza dados do setor                |
+|                | Deletar setor por ID    | DELETE | `/api/sectors/{id}`      | Remove setor pelo ID                   |
+| **Model**      | Criar modelo            | POST   | `/api/models`            | Cria um novo modelo                    |
+|                | Listar modelos          | GET    | `/api/models`            | Lista todos os modelos                 |
+|                | Buscar modelo por ID    | GET    | `/api/models/{id}`       | Retorna modelo pelo ID                 |
+|                | Atualizar modelo por ID | PUT    | `/api/models/{id}`       | Atualiza dados do modelo               |
+|                | Deletar modelo por ID   | DELETE | `/api/models/{id}`       | Remove modelo pelo ID                  |
+| **Moto**       | Criar moto              | POST   | `/api/motos`             | Cria uma nova moto                     |
+|                | Listar motos            | GET    | `/api/motos`             | Lista motos com filtros e paginação   |
+|                | Buscar moto por ID      | GET    | `/api/motos/{id}`        | Retorna moto pelo ID                   |
+|                | Atualizar moto por ID   | PUT    | `/api/motos/{id}`        | Atualiza dados da moto                 |
+|                | Deletar moto por ID     | DELETE | `/api/motos/{id}`        | Remove moto pelo ID                    |
 
 ## Modelo Relacional
 <div style="text-align: center;">
