@@ -488,3 +488,18 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 <div style="text-align: center;">
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
+
+## Iniciando o projeto
+
+``` bash
+  git clone https://github.com/andremarko/mottu-mapping-api-java
+```
+
+``` bash
+  cd mottu-mapping-api-java && docker build -t mottu-mapping-backend
+```
+``` bash
+  docker run -p 8080:8080 mottu-mapping-backend
+```
+
+
