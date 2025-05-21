@@ -1,9 +1,5 @@
 # REST API For Mottu Mapping - Depot Management
 
-# Indice
-
-# REST API For Mottu Mapping - Depot Management
-
 # Índice
 
 - [Sobre o Mottu Mapping](#sobre-o-mottu-mapping)
