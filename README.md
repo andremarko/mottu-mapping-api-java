@@ -2,20 +2,42 @@
 
 # Indice
 
+# REST API For Mottu Mapping - Depot Management
+
+# Índice
+
 - [Sobre o Mottu Mapping](#sobre-o-mottu-mapping)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Dependências instaladas](#dependências-instaladas)
-- [Endpoints - /api/[entidade]](#endpoints---apientidade)
+- [Endpoints](#endpoints)
   - [Entidade Moto](#entidade-moto)
-    - [Criar uma nova moto](#criar-uma-nova-moto)
-    - [Listar motos com filtros opcionais](#listar-motos-com-filtros-opcionais)
-  - [Entidade Model (modelo da moto)](#entidade-model-modelo-da-moto)
-  - [Entidade MotoYard (Pátio)](#entidade-motoyard-pátio)
-  - [Entidade Sector (Setor)](#entidade-sector-setor)
+    - [Criar moto](#criar-moto)
+    - [Listar motos](#listar-motos)
+    - [Buscar moto por ID](#buscar-moto-por-id)  
+    - [Atualizar moto](#atualizar-moto)
+    - [Deletar moto](#deletar-moto)
+  - [Entidade Model](#entidade-model)
+    - [Criar modelo](#criar-modelo)
+    - [Listar modelos](#listar-modelos)
+    - [Buscar modelo por ID](#buscar-modelo-por-id)  
+    - [Atualizar modelo](#atualizar-modelo)
+    - [Deletar modelo](#deletar-modelo)
+  - [Entidade MotoYard](#entidade-motoyard)
+    - [Criar pátio](#criar-pátio)
+    - [Listar pátios](#listar-pátios)
+    - [Buscar pátio por ID](#buscar-pátio-por-id)  
+    - [Atualizar pátio](#atualizar-pátio)
+    - [Deletar pátio](#deletar-pátio)
+  - [Entidade Sector](#entidade-sector)
+    - [Criar setor](#criar-setor)
+    - [Listar setores](#listar-setores)
+    - [Buscar setor por ID](#buscar-setor-por-id)  
+    - [Atualizar setor](#atualizar-setor)
+    - [Deletar setor](#deletar-setor)
 - [Tabela de Endpoints](#tabela-de-endpoints)
+- [Modelo Relacional](#modelo-relacional)
 
-
-## Sobre o _Mottu Mapping_
+## Sobre o Mottu Mapping
 
 ## Estrutura do projeto
 Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Expõe endpoints REST para operações CRUD relacionadas ao gerenciamento de motos e setorização de pátios, como parte de um sistema de visão computacional. Persistência em banco de dados Oracle.
@@ -142,9 +164,10 @@ Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Exp
 - `spring-boot-starter-web`: Suporte para APIs REST e servidor embutido.
 - `spring-boot-starter-actuator`: Monitoramento e métricas da aplicação.
 ---
-# Endpoints - /api/`[entidade]`
-## Entidade Moto
-### Criar uma nova moto
+## Endpoints
+
+### Entidade Moto
+#### Criar moto
 - **URL**: `/api/motos`
 - **Método**: POST
 - **Descrição**: Cria uma nova moto.
@@ -168,7 +191,7 @@ curl -X POST "http://localhost:8080/api/motos" \
            "sectorId": 1
          }'
 ```
-### Listar motos com filtros opcionais
+#### Listar motos
 - **URL**: `/api/motos`
 - **Método**: GET
 - **Descrição**: Retorna uma lista paginada de motos, podendo filtrar por placa, setor e ordenar os resultados.
@@ -183,7 +206,7 @@ curl -X POST "http://localhost:8080/api/motos" \
 ``` bash
 curl -X GET "http://localhost:8080/api/motos?plate=ABC1234&sectorId=1&page=0&size=10&sort=plate,asc"
 ```
-### Buscar moto por ID
+#### Buscar moto POR ID
 - **URL**: `/api/motos/{id}`
 - **Método**: GET
 - **Descrição**: Retorna os dados da moto pelo ID.
@@ -192,7 +215,7 @@ curl -X GET "http://localhost:8080/api/motos?plate=ABC1234&sectorId=1&page=0&siz
 ``` bash
 curl -X GET "http://localhost:8080/api/motos/1"
 ```
-### Atualizar moto por ID
+#### Atualizar moto
 - **URL**: `/api/motos/{id}`
 - **Método**: PUT
 - **Descrição**: Atualiza os dados da moto pelo ID.
@@ -216,7 +239,7 @@ curl -X PUT "http://localhost:8080/api/motos/1" \
            "sectorId": 3
          }'
 ```
-### Deletar moto por ID
+#### Deletar moto
 - **URL**: `/api/motos/{id}`
 - **Método**: DELETE
 - **Descrição**: Remove a moto pelo ID. Retorna status HTTP 204 (No Content) em caso de sucesso.
@@ -225,8 +248,8 @@ curl -X PUT "http://localhost:8080/api/motos/1" \
 ```bash
 curl -X DELETE "http://localhost:8080/api/motos/1"
 ```
-## Entidade Model (modelo da moto)
-### Criar um novo modelo de moto
+### Entidade Model
+#### Criar modelo
 - **URL**: `/api/models`
 - **Método**: POST  
 - **Descrição**: Cria um novo modelo de moto.
@@ -244,7 +267,7 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
            "modelName": "Honda CG 160"
          }'
 ```
-### Listar modelos de moto
+#### Listar modelos
 - **URL**: `/api/models`
 - **Método**: GET
 - **Descrição**: Retorna uma lista de todos os modelos.
@@ -252,7 +275,7 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 ```bash
 curl -X GET "http://localhost:8080/api/models"
 ```
-### Buscar modelo de moto por ID
+#### Buscar modelo por ID
 - **URL**: `/api/models/{id}`
 - **Método**: GET
 - **Descrição**: Retorna modelo pelo Id
@@ -261,7 +284,7 @@ curl -X GET "http://localhost:8080/api/models"
 ``` bash
 curl -X GET "http://localhost:8080/api/models/1"
 ```
-### Atualizar modelo por ID
+#### Atualizar modelo
 - **URL**: `/api/models/{id}`
 - **Método**: PUT
 - **Descrição**: Atualiza os dados do modelo pelo ID.
@@ -279,7 +302,7 @@ curl -X PUT "http://localhost:8080/api/models/1" \
            "modelName": "Mottu Pop"
          }'
 ```
-### Deletar modelo por ID
+#### Deletar modelo 
 - **URL**: `/api/models/{id}`
 - **Método**: DELETE
 - **Descrição**: Remove um modelo pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
@@ -288,8 +311,8 @@ curl -X PUT "http://localhost:8080/api/models/1" \
 ```bash
 curl -X DELETE "http://localhost:8080/api/models/1"
 ```
-## Entidade MotoYard (Pátio)
-### Criar um novo MotoYard 
+### Entidade MotoYard 
+### Criar pátio
 - **URL**: `/api/motoyards`
 - **Método**: POST
 - **Descrição**: Cria um novo MotoYard.
@@ -309,7 +332,7 @@ curl -X POST "http://localhost:8080/api/motoyards" \
            "capacity": 100
          }'
 ```
-### Listar todos os MotoYards
+#### Listar pátios
 - **URL**: ` /api/motoyards`
 - **Método**: GET
 - **Descrição**: Retorna uma lista de todos os MotoYards.
@@ -317,7 +340,7 @@ curl -X POST "http://localhost:8080/api/motoyards" \
 ```bash
 curl -X GET "http://localhost:8080/api/motoyards"
 ```
-### Buscar MotoYard por ID
+#### Buscar pátio por ID
 - **URL**: `/api/motoyards/{id}`  
 - **Método**: GET  
 - **Descrição**: Retorna os dados do MotoYard pelo ID.
@@ -325,7 +348,7 @@ curl -X GET "http://localhost:8080/api/motoyards"
 ```bash
 curl -X GET "http://localhost:8080/api/motoyards/1"
 ```
-### Atualizar MotoYard por ID
+#### Atualizar pátio
 - **URL**: `/api/motoyards/{id}`  
 - **Método**: PUT  
 - **Descrição**: Atualiza os dados do MotoYard pelo ID.
@@ -345,7 +368,7 @@ curl -X POST "http://localhost:8080/api/motoyards" \
            "capacity": 100
          }'
 ```
-### Deletar MotoYard por ID
+### Deletar pátio
 - **URL**: /api/motoyards/{id}
 - **Método**: DELETE
 - **Descrição**: Remove o MotoYard pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
@@ -353,8 +376,8 @@ curl -X POST "http://localhost:8080/api/motoyards" \
 ``` bash
 curl -X DELETE "http://localhost:8080/api/motoyards/1"
 ```
-## Entidade Sector (Setor)
-### Criar novo Sector
+### Entidade Sector
+#### Criar setor
 -**URL**: `/api/sectors`  
 - **Método**: POST  
 - **Descrição**: Cria um novo setor vinculado a um MotoYard.
@@ -380,7 +403,7 @@ curl -X POST "http://localhost:8080/api/sectors" \
             "colorName": "orange"
          }'
 ```
-### Listar todos os Sectors
+#### Listar setores
 - **URL**: `/api/sectors`  
 - **Método**: GET  
 - **Descrição**: Retorna uma lista de todos os setores.
@@ -389,7 +412,7 @@ curl -X POST "http://localhost:8080/api/sectors" \
 ```bash
 curl -X GET "http://localhost:8080/api/sectors"
 ```
-## Buscar Sector por ID
+#### Buscar setor por ID
 **URL**: `/api/sectors/{id}`  
 **Método**: GET  
 **Descrição**: Retorna os dados de um setor específico pelo ID.
@@ -398,7 +421,7 @@ curl -X GET "http://localhost:8080/api/sectors"
 ```bash
 curl -X GET "http://localhost:8080/api/sectors/1"
 ```
-### Atualizar Sector por ID
+#### Atualizar setor
 -**URL**: `/api/sectors/{id}`  
 - **Método**: PUT  
 - **Descrição**: Atualiza os dados de um setor existente.
@@ -424,7 +447,7 @@ curl -X PUT "http://localhost:8080/api/sectors/1" \
            "colorName": "green"
          }'
 ```
-### Deletar Sector por ID
+#### Deletar setor
 - **URL**: `/api/sectors/{id}`  
 - **Método**: DELETE  
 - **Descrição**: Remove o setor pelo ID. Retorna HTTP 204 (No Content) em caso de sucesso.
@@ -432,7 +455,7 @@ curl -X PUT "http://localhost:8080/api/sectors/1" \
 ```bash
 curl -X DELETE "http://localhost:8080/api/sectors/1"
 ```
---
+---
 
 ## Tabela de Endpoints
 
@@ -459,7 +482,7 @@ curl -X DELETE "http://localhost:8080/api/sectors/1"
 |                | Atualizar setor por ID | PUT    | `/api/sectors/{id}`      | Atualiza dados do setor              |
 |                | Deletar setor por ID   | DELETE | `/api/sectors/{id}`      | Remove setor pelo ID                 |
 
-# Modelo Relacional (MER)
+## Modelo Relacional
 <div style="text-align: center;">
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
