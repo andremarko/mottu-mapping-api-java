@@ -165,7 +165,6 @@ Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Exp
 - `spring-boot-starter-actuator`: Monitoramento e métricas da aplicação.
 ---
 ## Endpoints
-
 ### Entidade Moto
 #### Criar moto
 - **URL**: `/api/motos`
@@ -248,6 +247,7 @@ curl -X PUT "http://localhost:8080/api/motos/1" \
 ```bash
 curl -X DELETE "http://localhost:8080/api/motos/1"
 ```
+---
 ### Entidade Model
 #### Criar modelo
 - **URL**: `/api/models`
@@ -311,6 +311,7 @@ curl -X PUT "http://localhost:8080/api/models/1" \
 ```bash
 curl -X DELETE "http://localhost:8080/api/models/1"
 ```
+---
 ### Entidade MotoYard 
 ### Criar pátio
 - **URL**: `/api/motoyards`
@@ -376,9 +377,10 @@ curl -X POST "http://localhost:8080/api/motoyards" \
 ``` bash
 curl -X DELETE "http://localhost:8080/api/motoyards/1"
 ```
+---
 ### Entidade Sector
 #### Criar setor
--**URL**: `/api/sectors`  
+- **URL**: `/api/sectors`  
 - **Método**: POST  
 - **Descrição**: Cria um novo setor vinculado a um MotoYard.
 - **Body (JSON)**:
@@ -413,16 +415,16 @@ curl -X POST "http://localhost:8080/api/sectors" \
 curl -X GET "http://localhost:8080/api/sectors"
 ```
 #### Buscar setor por ID
-**URL**: `/api/sectors/{id}`  
-**Método**: GET  
-**Descrição**: Retorna os dados de um setor específico pelo ID.
+- **URL**: `/api/sectors/{id}`  
+- **Método**: GET  
+- **Descrição**: Retorna os dados de um setor específico pelo ID.
 
 **Exemplo cURL**:
 ```bash
 curl -X GET "http://localhost:8080/api/sectors/1"
 ```
 #### Atualizar setor
--**URL**: `/api/sectors/{id}`  
+- **URL**: `/api/sectors/{id}`  
 - **Método**: PUT  
 - **Descrição**: Atualiza os dados de um setor existente.
 - **Body (JSON)**:
