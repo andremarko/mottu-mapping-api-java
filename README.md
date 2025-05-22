@@ -537,10 +537,12 @@ A coleção de APIs está disponível em:
   docker build -t mottu-mapping-backend-image .
 ```
 ``` bash
-  # Utilizando instância Oracle Fiap - 19c
-  docker run -d --name mottu-mapping-backend -p 8080:8080 \
-  -e DB_USER=seu_usuario \
-  -e DB_PASSWORD=sua_senha\
+ docker run -d \
+>   --name mottu-mapping-backend \
+>   -p 8080:8080 \
+>   -e DB_USER=seu_usuario \
+>   -e DB_PASSWORD=sua_senha \
+>   mottu-mapping-backend-image
 ```
 
 
