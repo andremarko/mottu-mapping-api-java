@@ -1,0 +1,660 @@
+type: collection.insomnia.rest/5.0
+name: Mottu Mapping CRUD
+meta:
+  id: wrk_fd486a81e5e848b9b25458ee30743e17
+  created: 1747761124280
+  modified: 1747886645267
+collection:
+  - name: Moto
+    meta:
+      id: fld_bdf854bb90624fff94d634d1316ba931
+      created: 1747761138908
+      modified: 1747829277124
+      sortKey: -1747761138909
+    children:
+      - url: " http://localhost:8080/api/motos"
+        name: GetMotos
+        meta:
+          id: req_b49063f1b7184f96a900adde7e8ca831
+          created: 1747761185743
+          modified: 1747886559140
+          isPrivate: false
+          sortKey: -1747840626261
+        method: GET
+        parameters:
+          - description: Busca por Placa
+            disabled: true
+            id: pair_6166261fccb445f28929ad596c61f57e
+            name: plate
+            value: ABC1234
+          - description: Busca por Sector Id
+            disabled: true
+            id: pair_9611fce44ab649f3984b278ca78559cc
+            name: sectorId
+            value: "2"
+          - id: pair_8eaa5eda2e6d43c885ab45b2ab330586
+            name: page
+            value: "0"
+            description: indica que você quer a primeira página (considerando a contagem
+              começando em zero)
+            disabled: true
+          - description: " indica que cada página deve conter no máximo 10 motos"
+            disabled: true
+            id: pair_6e17f1a3e000403d8e9f538acaa499a0
+            name: size
+            value: "5"
+          - description: Ordenação da placa ascendente
+            disabled: true
+            id: pair_ea735c08f6f2483182e6a573058a4451
+            name: sort
+            value: plate,asc
+          - id: pair_a4b4bfb2b60745288f670ecb11cd30cb
+            name: sort
+            value: plate,desc
+            description: Ordenação da placa descendente
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/motos"
+        name: CreateMoto
+        meta:
+          id: req_44ff81f0d139443f8eae4b25c5dc33f3
+          created: 1747762359969
+          modified: 1747886553938
+          isPrivate: false
+          description: |
+            {
+              "plate": "XYZ5678",
+              "coordinates": "23.5611,-46.6566",
+              "modelId": 2,
+              "sectorId": 2
+            }
+
+            {
+              "plate": "DEF4321",
+              "coordinates": "23.5432,-46.6200",
+              "modelId": 3,
+              "sectorId": 3
+            }
+
+            {
+              "plate": "GHI8765",
+              "coordinates": "23.5599,-46.6400",
+              "modelId": 1,
+              "sectorId": 4
+            }
+
+            {
+              "plate": "JKL0001",
+              "coordinates": "23.5700,-46.6500",
+              "modelId": 2,
+              "sectorId": 5
+            }
+          sortKey: -1747840626311
+        method: POST
+        body:
+          mimeType: application/json
+          text: '{ "plate": "GHI8765", "coordinates": "23.5599,-46.6400", "modelId": 1,
+            "sectorId": 2 }'
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/motos/1"
+        name: GetMotoIdById
+        meta:
+          id: req_42a39326c92546578da4089ea69c41c9
+          created: 1747840542510
+          modified: 1747886563934
+          isPrivate: false
+          sortKey: -1747840626236
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/motos/1"
+        name: UpdateMotoById
+        meta:
+          id: req_ddf34a04aa3b4c0ebae631838039a477
+          created: 1747840564208
+          modified: 1747886569904
+          isPrivate: false
+          sortKey: -1747840626223.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	 "plate": "XYZ9876",
+            	 "coordinates": "23.4567,-46.7890",
+            	 "modelId": 1,
+            	 "sectorId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/motos/1"
+        name: DeleteMotoById
+        meta:
+          id: req_c8f84c866e2c4bc0b53191179fd16afc
+          created: 1747840626211
+          modified: 1747886575636
+          isPrivate: false
+          sortKey: -1747840626211
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Sector
+    meta:
+      id: fld_4b8d8919d60c45fb96219bb874a21874
+      created: 1747761145326
+      modified: 1747829277124
+      sortKey: -1747761167444
+    children:
+      - url: http://localhost:8080/api/sectors
+        name: CreateSector
+        meta:
+          id: req_d59d03a03232479a97d93308b0cbfd2f
+          created: 1747761858410
+          modified: 1747886496248
+          isPrivate: false
+          description: >-
+            {
+              "yardId": 2,
+              "name": "Revisão",
+              "description": "Motos em revisão",
+              "colorRgb": "#FFA500",
+              "colorName": "orange"
+            }
+
+
+            {
+              "yardId": 2,
+              "name": "Disponível",
+              "description": "Motos prontas para uso",
+              "colorRgb": "#008000",
+              "colorName": "green"
+            }
+
+
+            {
+              "yardId": 2,
+              "name": "Lavagem",
+              "description": "Motos em processo de limpeza",
+              "colorRgb": "#1E90FF",
+              "colorName": "dodgerblue"
+            }
+
+
+            {
+              "yardId": 2,
+              "name": "Manutenção",
+              "description": "Motos em manutenção preventiva",
+              "colorRgb": "#FFD700",
+              "colorName": "gold"
+            }
+
+
+            {
+              "yardId": 2,
+              "name": "Transferência",
+              "description": "Motos aguardando transferência para outra unidade",
+              "colorRgb": "#800080",
+              "colorName": "purple"
+            }
+
+
+            {
+              "yardId": 2,
+              "name": "Desativada",
+              "description": "Motos desativadas ou fora de operação",
+              "colorRgb": "#A9A9A9",
+              "colorName": "darkgray"
+            }
+          sortKey: -1747840847908
+        method: POST
+        body:
+          mimeType: application/json
+          text: '{ "yardId": 2, "name": "Manutenção", "description": "Motos em manutenção
+            preventiva", "colorRgb": "#FFD700", "colorName": "gold" }'
+        parameters:
+          - disabled: false
+            id: pair_cc7ab4280e7f435a98ca385c0e7a8375
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/sectors
+        name: GetSectors
+        meta:
+          id: req_72644016d88b4236ab6064b21d8745ab
+          created: 1747762777501
+          modified: 1747886502855
+          isPrivate: false
+          sortKey: -1747840847858
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/sectors/1
+        name: UpdateSectorById
+        meta:
+          id: req_ac2bef84ba7745049dcafefd90675d15
+          created: 1747778947244
+          modified: 1747886516728
+          isPrivate: false
+          sortKey: -1747840815963
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            { 
+              "yardId": 1,
+              "name": "Motos liberadas",
+              "description": "Setor de motos liberadas",
+              "colorRgb": "#00FF00",
+              "colorName": "green"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/sectors/1
+        name: DeleteSectorById
+        meta:
+          id: req_b7e4a688ce3641e8a1d2736863993406
+          created: 1747840784118
+          modified: 1747886522495
+          isPrivate: false
+          sortKey: -1747840784118
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/sectors/1
+        name: GetSectorById
+        meta:
+          id: req_cdce47012c3e44aa90eea0d030142160
+          created: 1747840847808
+          modified: 1747886509464
+          isPrivate: false
+          sortKey: -1747840847808
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Model
+    meta:
+      id: fld_d1923af8f1324887b2cf3efbdaf8fa8c
+      created: 1747761162570
+      modified: 1747829277124
+      sortKey: -1747761162570
+    children:
+      - url: " http://localhost:8080/api/models"
+        name: CreateModel
+        meta:
+          id: req_1a17928749c344339ed092974b0429b0
+          created: 1747761301932
+          modified: 1747886528934
+          isPrivate: false
+          description: |+
+            
+
+            	
+              {
+                "modelName": "Mottu Pop"
+              }
+              {
+                "modelName": "Mottu Sport"
+              }
+
+          sortKey: -1747840707525
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            
+            { "modelName": "Mottu Pop" }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/models"
+        name: GetModels
+        meta:
+          id: req_c1e9f3dd97194d57afc06f9b1a734f08
+          created: 1747762739091
+          modified: 1747886534110
+          isPrivate: false
+          sortKey: -1747840707475
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/models/1"
+        name: GetModelById
+        meta:
+          id: req_3c43b2a99f66405b8d9fe0efb4592b53
+          created: 1747840651407
+          modified: 1747886539851
+          isPrivate: false
+          sortKey: -1747840707450
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/models/1"
+        name: DeleteModelById
+        meta:
+          id: req_fa3af136e88d4db0b7ad9f926f78022f
+          created: 1747840698145
+          modified: 1747886548920
+          isPrivate: false
+          sortKey: -1747840698145
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: " http://localhost:8080/api/models/1"
+        name: UpdateModelById
+        meta:
+          id: req_1b18069856d84a149222e468e0a858c9
+          created: 1747840707425
+          modified: 1747886544704
+          isPrivate: false
+          sortKey: -1747840707425
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "modelName": "Mottu E"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: MotoYard
+    meta:
+      id: fld_b4393ae72ddc4e39aa5096d807b2c26f
+      created: 1747761172318
+      modified: 1747829277124
+      sortKey: -1747761172318
+    children:
+      - url: http://localhost:8080/api/motoyards
+        name: CreateMotoYard
+        meta:
+          id: req_eea5acf1074546ee819ef4d01da4fdbc
+          created: 1747761263061
+          modified: 1747886463222
+          isPrivate: false
+          description: |-
+            {
+              "description": "Pendentes",
+              "capacity": 100
+            }
+
+            {
+              "description": "Triagem",
+              "capacity": 80
+            }
+
+            {
+              "description": "Manutenção",
+              "capacity": 100
+            }
+
+            {
+              "description": "Isolamento",
+              "capacity": 60
+            }
+          sortKey: -1747761263361
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            { "description": "Isolamento", "capacity": 60 }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/motoyards
+        name: GetMotoYards
+        meta:
+          id: req_ea454b73b9304c9ab63b68be5504dbba
+          created: 1747770615011
+          modified: 1747886470266
+          isPrivate: false
+          sortKey: -1747761263336
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/motoyards/1
+        name: UpdateMotoYardById
+        meta:
+          id: req_d4be9c2479774c78a87b02c7be2063ae
+          created: 1747778894516
+          modified: 1747886482730
+          isPrivate: false
+          sortKey: -1747761263261
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "description": "Pátio Atualizado",
+              "capacity": 120
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/motoyards/1
+        name: GetMotoYardsById
+        meta:
+          id: req_46d40be2772745bd8ba1df7cd807bfef
+          created: 1747840928164
+          modified: 1747886476534
+          isPrivate: false
+          sortKey: -1747761263311
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/motoyards/1
+        name: DeleteMotoYardById
+        meta:
+          id: req_e2116d615f1a40788657de8c1a0a8d9a
+          created: 1747840936895
+          modified: 1747886489345
+          isPrivate: false
+          sortKey: -1747761263161
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b7a77ab1037695217da2028cb76a85540c75cfcd
+    created: 1747761124287
+    modified: 1747761124287
+environments:
+  name: Base Environment
+  meta:
+    id: env_b7a77ab1037695217da2028cb76a85540c75cfcd
+    created: 1747761124284
+    modified: 1747829277124
+    isPrivate: false
