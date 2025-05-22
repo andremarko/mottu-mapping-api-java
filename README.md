@@ -1,4 +1,4 @@
-# REST API For Mottu Mapping - Depot Management
+# REST API for Mottu Mapping - Depot Management
 
 # Índice
 
@@ -36,6 +36,10 @@
 - [Iniciando o projeto](#iniciando-o-projeto)
 
 ## Sobre o Mottu Mapping
+
+* Integrantes:
+  - André Geraldi Marcolongo - RM555285 - 2TDSPV
+  - Felipe Gabriel Lopes Pinheiro Clarindo - RM554547
 
 ## Estrutura do projeto
 Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Expõe endpoints REST para operações CRUD relacionadas ao gerenciamento de motos e setorização de pátios, como parte de um sistema de visão computacional. Persistência em banco de dados Oracle.
@@ -536,7 +540,7 @@ A coleção de APIs está disponível em:
   # Utilizando instância Oracle Fiap - 19c
   docker run -d --name mottu-mapping-backend -p 8080:8080 \
   -e DB_USER=seu_usuario \
-  -e DB_PASSWORD=senha\
+  -e DB_PASSWORD=sua_senha\
 ```
 
 
