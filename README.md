@@ -39,7 +39,7 @@
 
 * Integrantes:
   - André Geraldi Marcolongo - RM555285 - 2TDSPV
-  - Felipe Gabriel Lopes Pinheiro Clarindo - RM554547
+  - Felipe Gabriel Lopes Pinheiro Clarindo - RM554547 - 2TDSPX
 
 ## Estrutura do projeto
 Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Expõe endpoints REST para operações CRUD relacionadas ao gerenciamento de motos e setorização de pátios, como parte de um sistema de visão computacional. Persistência em banco de dados Oracle.
