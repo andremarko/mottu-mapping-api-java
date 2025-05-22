@@ -538,10 +538,10 @@ A coleção de APIs está disponível em:
 ```
 ``` bash
  docker run -d \
->   --name mottu-mapping-backend \
->   -p 8080:8080 \
->   -e DB_USER=seu_usuario \
->   -e DB_PASSWORD=sua_senha \
+    --name mottu-mapping-backend \
+   -p 8080:8080 \
+   -e DB_USER=seu_usuario \
+   -e DB_PASSWORD=sua_senha \
 >   mottu-mapping-backend-image
 ```
 
