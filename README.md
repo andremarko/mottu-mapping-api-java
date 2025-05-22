@@ -30,6 +30,7 @@
     - [Buscar moto por ID](#buscar-moto-por-id)  
     - [Atualizar moto](#atualizar-moto)
     - [Deletar moto](#deletar-moto)
+  - [Documentação de Endpoints no Insomnia](#documentação-de-endpoints-no-insomnia)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
 - [Iniciando o projeto](#iniciando-o-projeto)
@@ -480,6 +481,41 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 |                | Buscar moto por ID      | GET    | `/api/motos/{id}`        | Retorna moto pelo ID                   |
 |                | Atualizar moto por ID   | PUT    | `/api/motos/{id}`        | Atualiza dados da moto                 |
 |                | Deletar moto por ID     | DELETE | `/api/motos/{id}`        | Remove moto pelo ID                    |
+
+## Documentação de Endpoints no Insomnia
+
+A coleção de APIs está disponível em:  
+`mottu-mapping-api-java/docs/insomnia-collection-mottu-mapping.yaml`
+
+---
+
+### Como importar no Insomnia
+
+1. **Crie um projeto local**, caso ainda não tenha feito.  
+   Obs: lembre-se de criar um projeto local antes de importar a collection.  
+   ![Screenshot 2025-05-22 011153](https://github.com/user-attachments/assets/d5070792-a63b-4a62-b22e-959522dbe255)
+
+2. Clique em **Import** (botâo direito do painel do projeto).  
+   Isso abrirá a tela abaixo:
+   Clique em _"Choose Files"_ e selecione o arquivo `.yaml`.
+   ![Screenshot 2025-05-22 011238](https://github.com/user-attachments/assets/797dbfd8-850d-49db-bd8e-f4319d308766) 
+
+4. Clique em **Scan** para o Insomnia ler o conteúdo do arquivo.  
+   ![Screenshot 2025-05-22 011321](https://github.com/user-attachments/assets/cf9e0fef-76dd-4ca6-b444-9cce506c7df2)
+
+5. Uma pré-visualização da collection será exibida:
+   Clique em **Import** para confirmar a importação.   
+   ![Screenshot 2025-05-22 011340](https://github.com/user-attachments/assets/86e6fefd-d7ba-4b2d-96ce-7b7673c303e4)
+
+7. Pronto! A collection estará disponível no seu workspace.  
+   ![Screenshot 2025-05-22 011352](https://github.com/user-attachments/assets/94525cf8-512c-449e-8c96-44ed1a6ba113)
+
+   ![Screenshot 2025-05-22 011426](https://github.com/user-attachments/assets/18cc7cd7-c56e-4dcb-a70c-3773d236a0e5)
+
+8. Todos os endpoints com método **POST** possuem **exemplos de payload já salvos** na aba **Docs**:  
+   ![image](https://github.com/user-attachments/assets/2934bd83-2103-4823-ad13-5066eedb65b2)
+
+---
 
 ## Modelo Relacional
 <div style="text-align: center;">
