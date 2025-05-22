@@ -32,6 +32,7 @@
     - [Deletar moto](#deletar-moto)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
+- [Iniciando o projeto](#iniciando-o-projeto)
 
 ## Sobre o Mottu Mapping
 
@@ -493,13 +494,13 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 ```
 
 ``` bash
-  docker build \
-  --build-arg DB_USER=seu_usuario_oracle \
-  --build-arg DB_PASSWORD=sua_senha_oracle \
-  -t mottu-mapping-backend .
+  docker build -t mottu-mapping-backend-image .
 ```
 ``` bash
-  docker run -p 8080:8080 mottu-mapping-backend
+  # Utilizando instância Oracle Fiap - 19c
+  docker run -d --name mottu-mapping-backend -p 8080:8080 \
+  -e DB_USER=seu_usuario \
+  -e DB_PASSWORD=senha\
 ```
 
 
