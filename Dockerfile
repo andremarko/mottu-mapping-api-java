@@ -2,9 +2,6 @@ FROM maven:3.9.6-eclipse-temurin-21 AS build
 
 WORKDIR /build
 
-ARG DB_USER
-ARG DB_PASSWORD
-
 COPY pom.xml .
 COPY src ./src
 
@@ -21,6 +18,9 @@ COPY --from=build /build/target/mottu-mapping-api-0.0.1-SNAPSHOT.jar /app/mottu-
 RUN chown -R mapping-backend:mapping-backend /app
 
 USER mapping-backend
+
+ENV DB_USER=""
+ENV DB_PASSWORD=""
 
 EXPOSE 8080
 
