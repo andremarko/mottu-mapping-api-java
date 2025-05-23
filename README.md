@@ -524,7 +524,7 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
-## Iniciando o projeto
+## Execução do projeto
 ``` bash
   git clone https://github.com/andremarko/mottu-mapping-api-java
   cd mottu-mapping-api-java
