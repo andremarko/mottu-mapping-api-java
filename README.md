@@ -525,7 +525,6 @@ A coleção de APIs está disponível em:
 </div>
 
 ## Iniciando o projeto
-
 ``` bash
   git clone https://github.com/andremarko/mottu-mapping-api-java
   cd mottu-mapping-api-java
