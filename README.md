@@ -491,8 +491,6 @@ curl -X DELETE "http://localhost:8080/api/motos/1"
 A coleção de APIs está disponível em:  
 `mottu-mapping-api-java/docs/insomnia-collection-mottu-mapping.yaml`
 
----
-
 ### Como importar no Insomnia
 
 1. **Crie um projeto local**, caso ainda não tenha feito.  
