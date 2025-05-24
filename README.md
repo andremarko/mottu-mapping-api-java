@@ -1,4 +1,4 @@
-# REST API for Mottu Mapping - Depot Management
+# REST API for Mottu Mapping Yard Inventory
 
 # Índice
 
@@ -36,6 +36,10 @@
 - [Iniciando o projeto](#iniciando-o-projeto)
 
 ## Sobre o Mottu Mapping
+
+Mottu Mapping é uma solução que por meio de um modelo de visão computacional integrado a um sistema de hardware e software, possibilitará um gerenciamento dos pátios da Mottu com 
+mais agildiade e precisão.
+
 
 * Integrantes:
   - André Geraldi Marcolongo - RM555285 - 2TDSPV
