@@ -10,7 +10,7 @@ services:
       - mottu-mapping-db-volume:/var/lib/mysql
     restart: on-failure
     env_file:
-      - env.properties
+      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -31,7 +31,7 @@ services:
     networks:
       - mottu-mapping-network
     env_file:
-      - env.properties
+      - .env
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
