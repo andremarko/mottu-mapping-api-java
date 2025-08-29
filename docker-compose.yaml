@@ -1,6 +1,6 @@
 services:
   mottu-mapping-db:
-    image: mysql/mysql-server:8.0
+    image: mottumapping/mysql:8.0
     container_name: mottu-mapping-db
     ports:
       - "3306:3306"
@@ -21,7 +21,9 @@ services:
       interval: 30s
       timeout: 60s
       retries: 10
+
   mottu-mapping-backend:
+    image: mottumapping/backend:latest
     container_name: mottu-mapping-backend
     build:
       context: .
@@ -43,6 +45,5 @@ services:
 networks:
   mottu-mapping-network:
     driver: bridge
-
 volumes:
   mottu-mapping-db-volume:
