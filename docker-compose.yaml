@@ -10,7 +10,7 @@ services:
       - mottu-mapping-db-volume:/var/lib/mysql
     restart: on-failure
     env_file:
-      - .env.properties
+      - env.properties
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -42,6 +42,7 @@ services:
     restart: unless-stopped
 networks:
   mottu-mapping-network:
+    driver: bridge
 
 volumes:
   mottu-mapping-db-volume:
