@@ -1,6 +1,6 @@
 services:
   mottu-mapping-db:
-    image: mottumapping/mysql:8.0
+    image: mysql/mysql-server:8.0
     container_name: mottu-mapping-db
     ports:
       - "3306:3306"
@@ -23,11 +23,11 @@ services:
       retries: 10
 
   mottu-mapping-backend:
-    image: mottumapping/backend:latest
     container_name: mottu-mapping-backend
     build:
       context: .
       dockerfile: Dockerfile
+    image: mottumapping/backend
     ports:
       - "8080:8080"
     networks:
