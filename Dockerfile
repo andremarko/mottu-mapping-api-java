@@ -19,9 +19,6 @@ RUN chown -R mapping-backend:mapping-backend /app
 
 USER mapping-backend
 
-ENV DB_USER=""
-ENV DB_PASSWORD=""
-
 EXPOSE 8080
 
 CMD ["java", "-jar", "/app/mottu-mapping-api-0.0.1-SNAPSHOT.jar"]
