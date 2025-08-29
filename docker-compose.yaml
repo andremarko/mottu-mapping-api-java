@@ -1,0 +1,42 @@
+services:
+  mottu-mapping-db:
+    image: mysql/mysql-server:8.0
+    container_name: mottu-mapping-db
+    ports:
+      - "3306:3306"
+    networks:
+      - mottu-mapping-network
+    volumes:
+      - mottu-mapping-db-volume:/var/lib/mysql
+    restart: on-failure
+    env_file:
+      - .env.properties
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 60s
+      retries: 10
+  mottu-mapping-backend:
+    container_name: mottu-mapping-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - mottu-mapping-network
+    env_file:
+      - env.properties
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      mottu-mapping-db:
+        condition: service_healthy
+    restart: unless-stopped
