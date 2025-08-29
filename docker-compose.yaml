@@ -40,3 +40,8 @@ services:
       mottu-mapping-db:
         condition: service_healthy
     restart: unless-stopped
+networks:
+  mottu-mapping-network:
+
+volumes:
+  mottu-mapping-db-volume:
