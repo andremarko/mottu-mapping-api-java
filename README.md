@@ -33,17 +33,15 @@
   - [Documentação de Endpoints no Insomnia](#documentação-de-endpoints-no-insomnia)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
-- [Iniciando o projeto](#iniciando-o-projeto)
+- [Deploy do projeto](#deploy-do-projeto)
 
 ## Sobre o Mottu Mapping
 
 Mottu Mapping é uma solução que por meio de um modelo de visão computacional integrado a um sistema de hardware e software, possibilitará um gerenciamento dos pátios da Mottu com 
 mais agildiade e precisão.
 
-
 * Integrantes:
   - André Geraldi Marcolongo - RM555285 - 2TDSPV
-  - Felipe Gabriel Lopes Pinheiro Clarindo - RM554547 - 2TDSPX
 
 ## Estrutura do projeto
 Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Expõe endpoints REST para operações CRUD relacionadas ao gerenciamento de motos e setorização de pátios, como parte de um sistema de visão computacional. Persistência em banco de dados Oracle.
@@ -528,16 +526,34 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
-## Deploy do projeto, com docker-compose
+## Deploy do projeto
 
 ``` bash
   git clone https://github.com/andremarko/mottu-mapping-api-java
   cd mottu-mapping-api-java
 ```
-### Na pasta do projeto execute:
+### Na pasta do projeto crie:
+
+```bash
+	touch .env
+```
+Dentro do .env insira as seguintes variáveis e seus respectivos valores, por exemplo:
+
+```
+# MYSQL
+MYSQL_DATABASE=mottu-mapping
+MYSQL_ROOT_PASSWORD=suaSenhaRoot
+MYSQL_USER=mapping-service
+MYSQL_PASSWORD=suaSenha
+
+# SPRING
+SPRING_DATASOURCE_URL=jdbc:mysql://mottu-mapping-db:3306/mottu-mapping
+
+```
+### Após criação do .env, execute o build:
 
 ``` bash
-  docker compose up -d --build -t
+docker compose up -d --build -t
 ```
 #### Aguarde a finalização do deploy dos contêineres
 <h4> Após conclusão do deploy, ainda dentro da pasta do projeto, visualize os logs de execução: </h4> 
@@ -549,8 +565,10 @@ ou
 ```bash
 docker compose logs -f # para visualizar logs de todos os contêineres
 ```
-
-
-
+#### Caso queira acessar o banco de dados, execute:
+```bash
+docker compose exec -it mottu-mapping-db mysql -u mapping-service -p
+```
+Basta inserir a senha do usuário comum e você terá acesso interativo a instância do MySQL
 
 
