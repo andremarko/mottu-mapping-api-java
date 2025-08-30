@@ -529,26 +529,23 @@ A coleção de APIs está disponível em:
 ## Deploy do projeto
 
 ``` bash
-  git clone https://github.com/andremarko/mottu-mapping-api-java
-  cd mottu-mapping-api-java
+git clone https://github.com/andremarko/mottu-mapping-api-java
+cd mottu-mapping-api-java
 ```
 ### Na pasta do projeto crie:
 
 ```bash
-	touch .env
+touch .env
 ```
 Dentro do .env insira as seguintes variáveis e seus respectivos valores, por exemplo:
 
 ```
-# MYSQL
 MYSQL_DATABASE=mottu-mapping
 MYSQL_ROOT_PASSWORD=suaSenhaRoot
 MYSQL_USER=mapping-service
 MYSQL_PASSWORD=suaSenha
 
-# SPRING
 SPRING_DATASOURCE_URL=jdbc:mysql://mottu-mapping-db:3306/mottu-mapping
-
 ```
 ### Após criação do .env, execute o build:
 
