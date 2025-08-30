@@ -109,60 +109,60 @@ Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Exp
 ## Dependências instaladas
 ``` xml
 <dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
+    		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <scope>runtime</scope>
-        <optional>true</optional>
-    </dependency>
-
-    <dependency>
-        <groupId>com.oracle.database.jdbc</groupId>
-        <artifactId>ojdbc11</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <optional>true</optional>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-cache</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 </dependencies>
 ```
 - `spring-boot-starter-data-jpa`: Suporte a banco de dados via JPA/Hibernate.
 - `spring-boot-devtools`: Hot reload para facilitar o desenvolvimento.
 - `ojdbc11`: Driver JDBC para conectar ao banco Oracle.
+- `mysql-connector-java`: MySQL Connector - Conexão com MySQL DB
 - `lombok`: Gera automaticamente getters, setters e construtores.
 - `spring-boot-starter-test`: Ferramentas para testes automatizados.
 - `spring-boot-starter-validation`: Validação de dados via anotações.
@@ -528,22 +528,29 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
-## Execução do projeto
+## Deploy do projeto, com docker-compose
+
 ``` bash
   git clone https://github.com/andremarko/mottu-mapping-api-java
   cd mottu-mapping-api-java
 ```
+### Na pasta do projeto execute:
 
 ``` bash
-  docker build -t mottu-mapping-backend-image .
+  docker compose up -d --build -t
 ```
-``` bash
- docker run -d \
-    --name mottu-mapping-backend \
-   -p 8080:8080 \
-   -e DB_USER=seu_usuario \
-   -e DB_PASSWORD=sua_senha \
-   mottu-mapping-backend-image
+#### Aguarde a finalização do deploy dos contêineres
+<h4> Após conclusão do deploy, ainda dentro da pasta do projeto, visualize os logs de execução: </h4> 
+
+```bash
+docker compose logs -f <container-name> 
 ```
+ou
+```bash
+docker compose logs -f # para visualizar logs de todos os contêineres
+```
+
+
+
 
 
