@@ -9,5 +9,4 @@ public interface MotoRepository extends JpaRepository<Moto, Long> {
     Page<Moto> findByPlate(String plate, Pageable pageable);
     Page<Moto> findBySector_SectorId(Long sectorId, Pageable pageable);
     Page<Moto> findByPlateAndSector_SectorId(String plate, Long sectorId, Pageable pageable);
-
 }
