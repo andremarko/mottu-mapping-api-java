@@ -25,12 +25,12 @@ public class ModelController {
 
     @GetMapping
     public List<ModelResponseDTO> getAll() {
-        return modelService.readAll();
+        return modelService.getAll();
     }
 
     @GetMapping("/{id}")
     public ModelResponseDTO getById(@PathVariable Long id) {
-        return modelService.read(id);
+        return modelService.getById(id);
     }
 
     @PutMapping("/{id}")

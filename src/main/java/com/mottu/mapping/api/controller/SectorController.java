@@ -5,10 +5,10 @@ import com.mottu.mapping.api.dto.response.SectorResponseDTO;
 import com.mottu.mapping.api.service.SectorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/api/sectors")
@@ -24,13 +24,13 @@ public class SectorController {
     }
 
     @GetMapping
-    public List<SectorResponseDTO> getAll() {
-        return sectorService.readAll();
+    public Page<SectorResponseDTO> getAll(Pageable pageable) {
+        return sectorService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
     public SectorResponseDTO getById(@PathVariable Long id) {
-        return sectorService.read(id);
+        return sectorService.getById(id);
     }
 
     @PutMapping("/{id}")
