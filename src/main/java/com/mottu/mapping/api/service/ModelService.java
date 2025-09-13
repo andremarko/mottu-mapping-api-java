@@ -3,6 +3,7 @@ package com.mottu.mapping.api.service;
 import com.mottu.mapping.api.dto.request.ModelRequestDTO;
 import com.mottu.mapping.api.dto.response.ModelResponseDTO;
 import com.mottu.mapping.api.exception.ModelNotFoundException;
+import com.mottu.mapping.api.mapper.ModelMapper;
 import com.mottu.mapping.api.model.Model;
 import com.mottu.mapping.api.repository.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +17,37 @@ public class ModelService {
     @Autowired
     private ModelRepository modelRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public ModelResponseDTO save(ModelRequestDTO dto) {
-        Model model = new Model(dto.getModelName());
+        Model model = modelMapper.toEntity(dto);
         Model saved = modelRepository.save(model);
-        return toResponseDTO(saved);
+        return modelMapper.toResponseDTO(saved);
     }
 
-    public List<ModelResponseDTO> readAll() {
-        List<Model> models = modelRepository.findAll();
-        return models.stream()
-                .map(this::toResponseDTO)
+    public List<ModelResponseDTO> getAll() {
+        return modelRepository.findAll().
+                stream()
+                .map(modelMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public ModelResponseDTO read(Long modelId) {
+    public ModelResponseDTO getById(Long modelId) {
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new ModelNotFoundException(modelId));
-        return toResponseDTO(model);
+        return modelMapper.toResponseDTO(model);
     }
 
     public ModelResponseDTO update(Long modelId, ModelRequestDTO dto) {
-        Model existingModel = modelRepository.findById(modelId)
+        Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new ModelNotFoundException(modelId));
-        existingModel.setModelName(dto.getModelName());
-        Model updated = modelRepository.save(existingModel);
-        return toResponseDTO(updated);
+
+        modelMapper.updateEntityFromDTO(dto, model);
+
+        Model updated = modelRepository.save(model);
+
+        return modelMapper.toResponseDTO(updated);
     }
 
     public void delete(Long modelId) {
@@ -48,9 +55,5 @@ public class ModelService {
             throw new ModelNotFoundException(modelId);
         }
         modelRepository.deleteById(modelId);
-    }
-
-    private ModelResponseDTO toResponseDTO(Model model) {
-        return new ModelResponseDTO(model.getModelId(), model.getModelName());
     }
 }
