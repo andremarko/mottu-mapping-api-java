@@ -3,13 +3,13 @@ package com.mottu.mapping.api.service;
 import com.mottu.mapping.api.dto.request.MotoYardRequestDTO;
 import com.mottu.mapping.api.dto.response.MotoYardResponseDTO;
 import com.mottu.mapping.api.exception.MotoYardNotFoundException;
+import com.mottu.mapping.api.mapper.MotoYardMapper;
 import com.mottu.mapping.api.model.MotoYard;
 import com.mottu.mapping.api.repository.MotoYardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MotoYardService {
@@ -17,36 +17,36 @@ public class MotoYardService {
     @Autowired
     private MotoYardRepository motoYardRepository;
 
+    @Autowired
+    private MotoYardMapper motoYardMapper;
+
     public MotoYardResponseDTO save(MotoYardRequestDTO dto) {
-        MotoYard motoYard = new MotoYard();
-        motoYard.setDescription(dto.getDescription());
-        motoYard.setCapacity(dto.getCapacity());
+        MotoYard motoYard = motoYardMapper.toEntity(dto);
         MotoYard saved = motoYardRepository.save(motoYard);
-        return toResponseDTO(saved);
+        return motoYardMapper.toResponseDTO(saved);
     }
 
-    public List<MotoYardResponseDTO> readAll() {
-        List<MotoYard> yards = motoYardRepository.findAll();
-        return yards.stream()
-                .map(this::toResponseDTO)
-                .collect(Collectors.toList());
+    // paginado
+    public Page<MotoYardResponseDTO> getAll(Pageable pageable) {
+        return motoYardRepository.findAll(pageable)
+                .map(motoYardMapper::toResponseDTO);
     }
 
-    public MotoYardResponseDTO read(Long yardId) {
+    public MotoYardResponseDTO getById(Long yardId) {
         MotoYard motoYard = motoYardRepository.findById(yardId)
                 .orElseThrow(() -> new MotoYardNotFoundException(yardId));
-        return toResponseDTO(motoYard);
+        return motoYardMapper.toResponseDTO(motoYard);
     }
 
     public MotoYardResponseDTO update(Long yardId, MotoYardRequestDTO dto) {
-        MotoYard existing = motoYardRepository.findById(yardId)
+        MotoYard motoYard = motoYardRepository.findById(yardId)
                 .orElseThrow(() -> new MotoYardNotFoundException(yardId));
 
-        existing.setDescription(dto.getDescription());
-        existing.setCapacity(dto.getCapacity());
+        motoYardMapper.updateEntityFromDTO(dto, motoYard);
 
-        MotoYard updated = motoYardRepository.save(existing);
-        return toResponseDTO(updated);
+        MotoYard updated = motoYardRepository.save(motoYard);
+
+        return motoYardMapper.toResponseDTO(updated);
     }
 
     public void delete(Long yardId) {
@@ -54,13 +54,5 @@ public class MotoYardService {
             throw new MotoYardNotFoundException(yardId);
         }
         motoYardRepository.deleteById(yardId);
-    }
-
-    private MotoYardResponseDTO toResponseDTO(MotoYard motoYard) {
-        return new MotoYardResponseDTO(
-                motoYard.getYardId(),
-                motoYard.getDescription(),
-                motoYard.getCapacity()
-        );
     }
 }
