@@ -1,4 +1,4 @@
-package com.mottu.mapping.web.controller;
+package com.mottu.mapping.api.controller;
 
 import com.mottu.mapping.api.dto.response.MotoResponseDTO;
 import com.mottu.mapping.api.service.MotoYardService;
@@ -25,17 +25,21 @@ public class MotoViewController {
 
     // security admin e operator
     // pageable -> ajustar
-    @GetMapping("/motoyards")
-    public String getMotoYards(Model model) {
-        model.addAttribute("motoYardPage", motoYardService.getAll());
-        return "motoyards/list";
-    }
+//    @GetMapping("/motoyards")
+//    public String getMotoYards(Model model) {
+//        model.addAttribute("motoYardPage", motoYardService.getAll(
+//                @RequestParam(defaultValue="0") int page,
+//                @RequestParam(defaultValue = "10") int size,
+//                Model model)
+//        ));
+//        return "motoyards/list";
+//    }
 
-    // paginado
-    @GetMapping("/sectors")
-    public String getSectors(){
-        return "sectors/list";
-    }
+//    // paginado
+//    @GetMapping("/sectors")
+//    public String getSectors(){
+//        return "sectors/list";
+//    }
 
 
     // private
@@ -54,19 +58,8 @@ public class MotoViewController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping
-    public String {}
+    // @GetMapping
+    // public String {}
 
 
 
@@ -76,7 +69,4 @@ public class MotoViewController {
     public String getHome() {
         return "index";
     }
-
-
-
 }
