@@ -1,4 +1,4 @@
-package com.mottu.mapping.api.controller;
+package com.mottu.mapping.web.controller;
 
 import com.mottu.mapping.api.dto.response.MotoResponseDTO;
 import com.mottu.mapping.api.service.MotoYardService;

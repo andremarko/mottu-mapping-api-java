@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Mottu Mapping - Homepage</title>
-    <link rel="stylesheet" href="static/style.css" />
+    <link rel="stylesheet" th:href="@{/static/style.css}" />
 </head>
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
@@ -11,10 +11,10 @@
 <main>
     <div class="login-container">
         <div class="loginButton">
-            <a href="admin/login.html">LOGIN ADMIN</a>
+            <a th:href="@{/admin/login.html}">LOGIN ADMIN</a>
         </div>
         <div class="loginButton">
-            <a href="operator/login.html">LOGIN OPERADOR</a>
+            <a th:href="@{/operator/login.html}">LOGIN OPERADOR</a>
         </div>
     </div>
 </main>
