@@ -18,6 +18,8 @@ public class MotoViewController {
     @Autowired
     private MotoService motoService;
 
+    // private
+    // security admin e operator
     @GetMapping("/motos")
     public String getMotos(
             @RequestParam(defaultValue = "0") int page,
@@ -29,5 +31,14 @@ public class MotoViewController {
 
         model.addAttribute("motosPage", motosPage);
         return "motos/list";
+    }
+
+
+
+    // public
+    @GetMapping("/")
+    public String getHome() {
+
+        return "/";
     }
 }

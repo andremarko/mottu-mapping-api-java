@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mottu Mapping - Homepage</title>
+    <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<main>
+    <div class="login-container">
+        <div class="loginButton">
+            <a href="admin/login.html">LOGIN ADMIN</a>
+        </div>
+        <div class="loginButton">
+            <a href="operator/login.html">LOGIN OPERADOR</a>
+        </div>
+    </div>
+</main>
+
+<footer th:insert="fragments/fragments.html :: footer"></footer>
+</body>
+</html>
