@@ -1,6 +1,7 @@
 package com.mottu.mapping.web.controller;
 
 import com.mottu.mapping.api.dto.response.MotoResponseDTO;
+import com.mottu.mapping.api.service.MotoYardService;
 import org.springframework.ui.Model;
 import com.mottu.mapping.api.service.MotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,25 @@ public class MotoViewController {
 
     @Autowired
     private MotoService motoService;
+
+    @Autowired
+    private MotoYardService motoYardService;
+
+
+    // security admin e operator
+    // pageable -> ajustar
+    @GetMapping("/motoyards")
+    public String getMotoYards(Model model) {
+        model.addAttribute("motoYardPage", motoYardService.getAll());
+        return "motoyards/list";
+    }
+
+    // paginado
+    @GetMapping("/sectors")
+    public String getSectors(){
+        return "sectors/list";
+    }
+
 
     // private
     // security admin e operator
@@ -35,10 +55,28 @@ public class MotoViewController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+    @GetMapping
+    public String {}
+
+
+
+
     // public
     @GetMapping("/")
     public String getHome() {
-
-        return "/";
+        return "index";
     }
+
+
+
 }
