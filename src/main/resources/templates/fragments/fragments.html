@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/static/style.css}" />
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
-  <!-- Header -->
-  <div th:fragment="header" >
-    <header class="header">
-      <h1>Mottu Mapping</h1>
-      <nav>
-      <!-- revisar        -->
-<!--        <a href="/motos">Motos</a> |-->
-<!--        <a href="/modelos">Modelos</a> |-->
-<!--        <a href="/patios">Pátios</a> |-->
-<!--        <a href="/setores">Setores</a>-->
-      </nav>
-    </header>
-  </div>
+<!-- Header -->
+<header class="header" th:fragment="header">
+  <h1>Mottu Mapping</h1>
+</header>
 
-  <!-- Footer -->
-  <div th:fragment="footer">
-    <footer style="text-align:center; padding:1em; background-color:#f5f5f5;">
-      <p>&copy; 2025 Mottu Mapping. Todos os direitos reservados.</p>
-    </footer>
-  </div>
+<!-- Footer -->
+<footer th:fragment="footer" style="text-align:center; padding:1em; background-color:#f5f5f5;">
+  <p>&copy; 2025 Mottu Mapping. Todos os direitos reservados.</p>
+</footer>
 
-  <!-- Formulário genérico -->
-  <div th:fragment="formCadastro">
-    <form th:action="@{/save}" th:object="${entity}" method="post">
-      <div>
-        <label>Nome:</label>
-        <input type="text" th:field="*{name}" />
-      </div>
-      <div>
-        <label>Descrição:</label>
-        <input type="text" th:field="*{description}" />
-      </div>
-      <button type="submit">Salvar</button>
-    </form>
+<!-- Formulário genérico -->
+<form th:fragment="formCadastro" th:action="@{/save}" th:object="${entity}" method="post">
+  <div>
+    <label>Nome:</label>
+    <input type="text" th:field="*{name}" />
   </div>
+  <div>
+    <label>Descrição:</label>
+    <input type="text" th:field="*{description}" />
+  </div>
+  <button type="submit">Salvar</button>
+</form>
 </body>
 </html>

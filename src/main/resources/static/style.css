@@ -1,16 +1,27 @@
+body, header, main, footer {
+    margin: 0;
+    padding: 0;
+}
+
 .header {
     background-color: #FF5733;
     color: white;
-
+    padding: 14px;
 }
-
 .login-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    gap: 10px;
 }
 
 .login-button {
-    padding: 10px;
+    padding: 10px 20px;
     text-align: center;
+    border: 2px solid black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    color: black;
 }
