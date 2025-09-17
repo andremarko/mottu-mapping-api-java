@@ -2,20 +2,16 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Mottu Mapping - Homepage</title>
+    <title>Login Admin</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <main>
-    <div class="login-redirect-container">
+    <h2>Admin Panel Login</h2>
 
-        <a th:href="@{/admin/login} " class="login-button">LOGIN ADMIN</a>
-
-        <a th:href="@{/operator/login}" class="login-button">LOGIN OPERADOR</a>
-
-    </div>
+    <div th:replace="fragments/fragments :: formLogin"> </div>
 </main>
 
 <footer th:insert="fragments/fragments.html :: footer"></footer>
