@@ -15,17 +15,22 @@
   <p>&copy; 2025 Mottu Mapping. Todos os direitos reservados.</p>
 </footer>
 
-<!-- Formulário genérico -->
-<form th:fragment="formCadastro" th:action="@{/save}" th:object="${entity}" method="post">
+<!-- Formulário Login - Generico -->
+<div class="form-login">
+<form  th:fragment="formLogin" th:action="@{/login}" method="post">
+  <!-- revisar model User, se será necessário -->
   <div>
-    <label>Nome:</label>
-    <input type="text" th:field="*{name}" />
+    <label>Usuário:</label>
+
+    <input type="text" /> <!--th:field="*{user}" -->
   </div>
   <div>
-    <label>Descrição:</label>
-    <input type="text" th:field="*{description}" />
+    <label>Senha:</label>
+    <input type="password"  /> <!-- th:field="*{password}" -->
   </div>
-  <button type="submit">Salvar</button>
+
+  <button type="submit">Login</button>
 </form>
+</div>
 </body>
 </html>
