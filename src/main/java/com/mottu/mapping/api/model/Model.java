@@ -5,10 +5,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
-@Data
 @Table(name="TB_MODEL")
 public class Model {
     @Id
@@ -19,10 +23,4 @@ public class Model {
 
     @Column(name="model_name", nullable = false)
     private String modelName;
-
-    public Model() {}
-
-    public Model(String modelName) {
-        this.modelName = modelName;
-    }
 }

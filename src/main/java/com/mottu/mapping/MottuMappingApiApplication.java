@@ -1,4 +1,4 @@
-package com.mottu.mapping.api;
+package com.mottu.mapping;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

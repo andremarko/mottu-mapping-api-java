@@ -1,0 +1,457 @@
+body, header, main, footer {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background: #f8f8f8;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 120vh;
+}
+
+main {
+    flex: 1;
+}
+
+.header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 1.5em 0;
+    text-align: center;
+}
+
+.header img {
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+.header span {
+    font-size: 2em;
+    vertical-align: middle;
+}
+
+.table {
+    width: 100%;
+    max-width: 900px;
+    margin: 2em auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 1px 4px #0001;
+}
+
+.table th {
+    background: #4CAF50;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.7em 0.5em;
+    border: none;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.7em 0.5em;
+    border: none;
+}
+
+.table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.table td.cor-setor {
+    height: 32px;
+    min-width: 80px;
+    max-width: 120px;
+    min-height: 32px;
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a, .btn {
+    background: #4CAF50;
+    color: #fff !important;
+    border-radius: 24px;
+    padding: 0.5em 1.2em;
+    border: none;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0 0.2em;
+    transition: background 0.2s;
+}
+
+.pagination a:hover, .btn:hover {
+    background: #388E3C;
+}
+
+.pagination span {
+    font-weight: 500;
+    color: #222;
+    margin: 0 0.5em;
+}
+
+.motos-container {
+    margin-top: 2em;
+}
+
+.dashboard h2 {
+    color: #4CAF50;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.dashboard h2 span {
+    color: #222;
+    font-weight: 400;
+}
+
+.redirect-class {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2em;
+    height: 100vh;
+    margin: 0;
+}
+
+.redirect-class a {
+    width: auto;
+    min-width: 140px;
+    max-width: 300px;
+    padding: 0.7em 2em;
+    border-radius: 12px;
+    text-align: center;
+    display: inline-block;
+}
+
+.footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #f5f5f5;
+    color: #222;
+    font-size: 1em;
+}
+
+.cor-setor {
+    height: 32px;
+    min-width: 80px;
+    max-width: 120px;
+    min-height: 32px;
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.btn-delete {
+    background: #d32f2f !important;
+    margin-left: 0.5em;
+    color: #fff;
+    border-radius: 24px;
+    border: none;
+    padding: 0.3em 0.8em;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-delete:hover {
+    background: #b71c1c !important;
+}
+
+.empty-row {
+    text-align: center;
+    color: #888;
+    font-size: 1em;
+    padding: 1em 0;
+}
+
+.pagination {
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.btn-cadastrar-moto {
+    margin: 1em 0;
+}
+.btn-cadastrar-setor{
+    margin: 1em 0;
+}
+.btn-cadastrar-operador{
+    margin: 1em 0;
+}
+.btn-users {
+    margin: 1em 0;
+}
+.icon {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 0.3em;
+}
+.icon-logout svg {
+    vertical-align: middle;
+    margin-bottom: -2px;
+}
+.icon-tag svg,
+.icon-trash svg,
+.icon-plus svg,
+.icon-copyright svg {
+    vertical-align: middle;
+}
+.logout-link {
+    float: right;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+    text-decoration: none;
+}
+.btn-cadastrar-moto .icon-plus {
+    margin-right: 0.3em;
+}
+.btn-delete .icon-trash {
+    margin-right: 0.3em;
+}
+.table th .icon-tag {
+    margin-left: 0.2em;
+}
+.footer .icon-copyright {
+    margin-right: 0.2em;
+}
+
+.moto-details-card {
+    background: #fff;
+    box-shadow: 0 2px 8px #0002;
+    border-radius: 10px;
+    padding: 2em 2em 1em 2em;
+    margin: 2em auto;
+    max-width: 600px;
+}
+
+.moto-details-card h2 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.moto-details-card form {
+    width: 100%;
+}
+
+.moto-details-card input[type="text"],
+.moto-details-card select {
+    width: 100%;
+    padding: 0.6em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 0.3em;
+    margin-bottom: 0.7em;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.moto-details-card input[type="text"]:focus,
+.moto-details-card select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.moto-details-card th {
+    width: 30%;
+    text-align: right;
+    padding-right: 1em;
+    background: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.moto-details-card td {
+    width: 70%;
+    text-align: left;
+    background: none;
+    color: #222;
+}
+
+.moto-details-card button,
+.moto-details-card input[type="submit"] {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.7em 1.5em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1em;
+    transition: background 0.2s;
+}
+
+.moto-details-card button:hover,
+.moto-details-card input[type="submit"]:hover {
+    background: #388E3C;
+}
+
+.genericForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+
+.genericForm label {
+    font-weight: 500;
+    margin-bottom: 0.3em;
+    color: #333;
+}
+
+.genericForm input, .genericForm select {
+    padding: 0.7em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background: #fafafa;
+    transition: border-color 0.2s;
+}
+
+.genericForm input:focus, .genericForm select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.genericForm button, .form-card button {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8em 1.5em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.genericForm button:hover, .form-card button:hover {
+    background: #388E3C;
+}
+
+/* Padronização dos formulários */
+.form-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0002;
+    padding: 2em;
+    max-width: 500px;
+    margin: 2em auto;
+}
+.form-cadastro-moto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+.form-group-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+.form-control {
+    padding: 0.7em 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f8f8f8;
+    max-width: 350px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 0.7em auto;
+    transition: border-color 0.2s;
+}
+.form-control:focus, .genericForm input:focus, .genericForm select:focus, .moto-details-card input[type="text"]:focus, .moto-details-card select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.page-title, .dashboard h2, .moto-details-card h2 {
+    color: #4CAF50;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-size: 2em;
+    font-weight: 700;
+}
+.dashboard h2 span {
+    color: #222;
+    font-weight: 400;
+}
+
+.msg-success {
+    color: #388E3C;
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-align: center;
+}
+.msg-error {
+    color: #d32f2f;
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.setor-flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-card, .table-card {
+    margin: 0;
+}

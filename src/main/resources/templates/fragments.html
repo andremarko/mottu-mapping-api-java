@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+
+<!-- Header -->
+<header class="header" th:fragment="header(showLogout)">
+  <div class="header-content" style="display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto;position:relative;">
+    <a href="/" class="btn btn-home" style="margin-left:0;position:relative;">Home</a>
+    <span style="font-size:2em;vertical-align:middle;flex:1;text-align:center;">Mottu Mapping</span>
+    <a th:if="${showLogout}" href="/logout" class="logout-link" title="Logout" style="position:relative;">
+      <span class="icon icon-logout">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </span>
+    </a>
+  </div>
+</header>
+
+<!-- Footer -->
+<footer th:fragment="footer" class="footer">
+  <p><span class="icon icon-copyright">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9a3 3 0 1 0 0 6"/></svg>
+  </span> &copy; 2025 Mottu Mapping. Todos os direitos reservados.</p>
+</footer>
+
+<!-- Tabela genérica -->
+<div th:fragment="tableCard(headers, rows)" class="table-card">
+  <table class="table">
+    <thead>
+      <tr th:each="header : ${headers}">
+        <th th:text="${header}"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="row : ${rows}">
+        <td th:each="cell : ${row}" th:text="${cell}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Tabela de motos -->
+<div th:fragment="motoTable(motos, currentPage, totalPages, dashboardPrefix)" class="table-card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Placa</th>
+        <th>Modelo</th>
+        <th>Setor <span class="icon icon-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41a2 2 0 0 1 0 2.83l-4.17 4.17a2 2 0 0 1-2.83 0l-7.17-7.17a2 2 0 0 1 0-2.83l4.17-4.17a2 2 0 0 1 2.83 0z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span></th>
+        <th>Cor do Setor</th>
+        <th>Coordenadas</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="moto : ${motos}">
+        <td th:text="${moto.motorcycleId}"></td>
+        <td th:text="${moto.plate}"></td>
+        <td th:text="${moto.model != null ? moto.model.modelName : ''}"></td>
+        <td th:text="${moto.sector != null ? moto.sector.name : ''}"></td>
+        <td class="cor-setor" th:style="'background:' + (${moto.sector != null ? moto.sector.colorRgb : '#ccc'}) + ';'"></td>
+        <td th:text="${moto.coordinates}"></td>
+        <td>
+          <!-- Se usuário for ADMIN redireciona para ADMIN/MOTO-DETAILS se for operator OPERATOR/MOTO-DETAILS -->
+          <a sec:authorize="hasRole('ADMIN')" th:href="@{'/admin/moto-details/' + ${moto.motorcycleId}}" class="btn">Detalhes</a>
+          <a sec:authorize="hasRole('OPERATOR')" th:href="@{'/operator/moto-details/' + ${moto.motorcycleId}}" class="btn">Detalhes</a>
+          <form sec:authorize="hasRole('ADMIN')" th:action="@{'/admin/deleta-moto/' + ${moto.motorcycleId}}" method="post" class="inline-form">
+            <button type="submit" class="btn btn-delete"><span class="icon icon-trash"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span></button>
+          </form>
+          <form sec:authorize="hasRole('OPERATOR')" th:action="@{'/operator/deleta-moto/' + ${moto.motorcycleId}}" method="post" class="inline-form">
+            <button type="submit" class="btn btn-delete"><span class="icon icon-trash"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span></button>
+          </form>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(motos)}">
+        <td colspan="7" class="empty-row">Nenhuma moto cadastrada neste pátio.</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Paginação abaixo da tabela -->
+  <div class="pagination">
+    <a th:if="${currentPage > 0}" th:href="@{${dashboardPrefix}(page=${currentPage - 1})}">&laquo; Anterior</a>
+    <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+    <a th:if="${currentPage < totalPages - 1}" th:href="@{${dashboardPrefix}(page=${currentPage + 1})}">Próxima &raquo;</a>
+  </div>
+</div>
+
+<!-- operator-dashboard -->
+<div th:fragment="operator-dashboard" class="dashboard">
+  <div class="dashboard-header">
+    <h2 style="text-align:center;">Painel de Controle - Pátio: <span th:text="${yard.branchName}"></span></h2>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <span style="font-size:1.2em;" th:text="'Endereço: ' + ${yard.address}"></span>
+    </div>
+    <a class="btn btn-cadastrar-moto" th:href="@{/operator/cadastra-moto}"><span class="icon icon-plus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> Cadastrar moto</a>
+  </div>
+  <div class="motos-container">
+    <div th:replace="fragments :: motoTable(${yardMotos}, ${currentPage}, ${totalPages}, '/operator/dashboard')"></div>
+  </div>
+</div>
+
+<!--ADMIN DASHBOARD-->
+<div th:fragment="admin-dashboard" class="dashboard">
+  <div class="dashboard-header">
+    <h2 style="text-align:center;">Painel de Controle - Pátio: <span th:text="${yard.branchName}"></span></h2>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <span style="font-size:1.2em;" th:text="'Endereço: ' + ${yard.address}"></span>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:10px; margin-top: 20px; justify-content:center;">
+      <a class="btn btn-cadastrar-moto" th:href="@{/admin/cadastra-moto}"><span class="icon icon-plus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> Cadastrar moto</a>
+      <a class="btn btn-cadastrar-setor" th:href="@{/admin/cadastra-setor}"><span class="icon icon-plus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> Cadastrar novo setor</a>
+      <a class="btn btn-users" th:href="@{/admin/users}"><span class="icon icon-user"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></span>Operadores</a>
+    </div>
+  </div>
+  <div class="motos-container">
+    <div th:replace="fragments :: motoTable(${yardMotos}, ${currentPage}, ${totalPages}, '/admin/dashboard')"></div>
+  </div>
+</div>
+
+<!-- Formulário  -->
+<div th:fragment="genericForm(action)" class="genericForm">
+  <form th:action="${action}" th:object="${moto}" method="post" class="form-cadastro-moto">
+    <div class="form-group">
+      <label for="plate">Placa:</label>
+      <input type="text" id="plate" th:field="*{plate}" placeholder="Digite a placa - Ex: ABC1234 ou ABC-1234" required/>
+    </div>
+    <div class="form-group">
+      <label for="coordinates">Coordenadas:</label>
+      <input type="text" id="coordinates" th:field="*{coordinates}" placeholder="Digite coordenadas" required/>
+    </div>
+    <div class="form-group">
+      <label for="model">Modelo:</label>
+      <select id="model" th:field="*{modelId}" required>
+        <option value="" disabled selected>Selecione um modelo</option>
+        <option th:each="m : ${models}" th:value="${m.modelId}" th:text="${m.modelName}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sector">Setor:</label>
+      <select id="sector" th:field="*{sectorId}" required>
+        <option value="" disabled selected>Selecione um setor</option>
+        <option th:each="s : ${sectors}" th:value="${s.sectorId}" th:text="${s.name}"></option>
+      </select>
+    </div>
+    <div class="form-group form-group-btn">
+      <button sec:authorize="hasRole('ADMIN')" type="submit">Cadastrar Moto</button>
+      <button sec:authorize="hasRole('OPERATOR')" type="submit">Cadastrar Moto</button>
+    </div>
+  </form>
+</div>
+
+<!-- Formulário de edição de moto -->
+<div th:fragment="motoDetails(moto, models, sectors, id, editMotoMsg)" class="moto-details-card">
+  <h2>Editar Moto</h2>
+  <form th:action="${#authorization.expression('hasRole(''ADMIN'')') ? '/admin/moto-details/' + id : '/operator/moto-details/' + id}" th:object="${moto}" method="post" class="form-cadastro-moto">
+    <div class="form-group">
+      <label for="plate">Placa:</label>
+      <input type="text" id="plate" th:field="*{plate}" placeholder="Digite a placa" required />
+    </div>
+    <div class="form-group">
+      <label for="coordinates">Coordenadas:</label>
+      <input type="text" id="coordinates" th:field="*{coordinates}" placeholder="Digite coordenadas" required />
+    </div>
+    <div class="form-group">
+      <label for="model">Modelo:</label>
+      <select id="model" th:field="*{modelId}" required>
+        <option value="" disabled>Selecione um modelo</option>
+        <option th:each="m : ${models}" th:value="${m.modelId}" th:text="${m.modelName}" th:selected="${m.modelId == (moto.modelId != null ? moto.modelId : (moto.model != null ? moto.model.modelId : null))}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sector">Setor:</label>
+      <select id="sector" th:field="*{sectorId}" required>
+        <option value="" disabled>Selecione um setor</option>
+        <option th:each="s : ${sectors}" th:value="${s.sectorId}" th:text="${s.name}" th:selected="${s.sectorId == (moto.sectorId != null ? moto.sectorId : (moto.sector != null ? moto.sector.sectorId : null))}"></option>
+      </select>
+    </div>
+    <div class="form-group form-group-btn">
+      <button type="submit" class="btn">Salvar</button>
+      <a th:href="${#authorization.expression('hasRole(''ADMIN'')') ? '/admin/dashboard' : '/operator/dashboard'}" class="btn" style="margin-left:1em;">Voltar ao Dashboard</a>
+    </div>
+    <div th:if="${editMotoMsg != null}" style="text-align:center;margin-top:1em;color:#4CAF50;">
+      <span th:text="${editMotoMsg}"></span>
+    </div>
+  </form>
+</div>
+
+<!-- Formulário de setor -->
+<div th:fragment="sectorForm(sector, action, buttonLabel)" class="form-card">
+  <form th:action="${action}" th:object="${sector}" method="post" class="form">
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" th:field="*{name}" required class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="description">Descrição:</label>
+      <input type="text" id="description" th:field="*{description}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="colorName">Cor (nome):</label>
+      <input type="text" id="colorName" th:field="*{colorName}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="colorRgb">Cor (RGB):</label>
+      <input type="color" id="colorRgb" th:field="*{colorRgb}" class="form-control" />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn" th:text="${buttonLabel}"></button>
+    </div>
+  </form>
+</div>
+
+<!-- Tabela de setores -->
+<div th:fragment="sectorTable(sectors)" class="table-card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Cor</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="sector : ${sectors}">
+        <td th:text="${sector.sectorId}"></td>
+        <td th:text="${sector.name}"></td>
+        <td>
+          <span th:text="${sector.colorName}"></span>
+          <span style="display:inline-block;width:20px;height:20px;border-radius:4px;vertical-align:middle;"
+                th:style="'background:' + ${sector.colorRgb}"></span>
+        </td>
+        <td>
+          <form th:action="@{'/admin/deleta-setor/' + ${sector.sectorId}}" method="post" class="inline-form">
+            <button type="submit" class="btn btn-delete" onclick="return confirm('Deseja realmente deletar este setor? Todas as motos nele cadastrados serão deletados')">Deletar</button>
+          </form>
+          <a th:href="@{'/admin/edita-setor/' + ${sector.sectorId}}" class="btn">Editar</a>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(sectors)}">
+        <td colspan="4" class="empty-row">Nenhum setor cadastrado.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Formulário de operador -->
+<div th:fragment="operatorForm(user, action, buttonLabel)" class="form-card">
+  <form th:action="${action}" th:object="${user}" method="post" class="form-cadastro-moto">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" th:field="*{username}" placeholder="Digite o username" required class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      <input type="password" id="password" th:field="*{password}" placeholder="Digite a senha" required class="form-control" />
+    </div>
+    <div class="form-group form-group-btn">
+      <button type="submit" class="btn" th:text="${buttonLabel}"></button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

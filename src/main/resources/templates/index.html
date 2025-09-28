@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Mottu Mapping - Homepage</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<header th:insert="fragments :: header(false)"> </header>
+
+<main>
+    <div class="redirect-class">
+        <a th:href="@{/operator/dashboard}" class="btn">Acessar Dashboard do Operador</a>
+        <a th:href="@{/admin/dashboard}" class="btn">Acessar Dashboard do Admin</a>
+    </div>
+</main>
+
+<footer th:insert="fragments :: footer"></footer>
+</body>
+</html>

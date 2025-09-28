@@ -3,9 +3,13 @@ package com.mottu.mapping.api.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name="TB_MOTORCYCLE")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
-@Data
+@Table(name="TB_MOTORCYCLE")
 public class Moto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,19 +19,14 @@ public class Moto {
     private String plate;
     @Column(nullable = false)
     private String coordinates;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+
+    // Lazy evita que o JPA carregue o objeto completo imediatamente
+    // Cascade PERSIST só persiste o model se ele for novo (sem id)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="model_id")
     private Model model;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="sector_id")
     private Sector sector;
-
-    public Moto() {}
-
-    public Moto(String plate, String coordinates, Model model, Sector sector) {
-        this.plate = plate;
-        this.coordinates = coordinates;
-        this.model = model;
-        this.sector = sector;
-    }
 }
