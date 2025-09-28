@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SectorService {
 
@@ -25,7 +27,7 @@ public class SectorService {
 
     @Autowired
     private SectorMapper sectorMapper;
-    // retorna response DTO, recebe como param corpo de request (post)
+
     public SectorResponseDTO save(SectorRequestDTO dto) {
         MotoYard yard = motoYardRepository.findById(dto.getYardId())
                 .orElseThrow(() -> new MotoYardNotFoundException(dto.getYardId()));
@@ -36,17 +38,23 @@ public class SectorService {
         return sectorMapper.toResponseDTO(saved);
     }
 
-    // paginado, retorna uma tupla
     public Page<SectorResponseDTO> getAll(Pageable pageable) {
         return sectorRepository.findAll(pageable)
                 .map(sectorMapper::toResponseDTO);
     }
 
-    // retorna response DTO, recebe como param o id (get)
     public SectorResponseDTO getById(Long sectorId) {
         Sector sector = sectorRepository.findById(sectorId)
                 .orElseThrow(() -> new SectorNotFoundException(sectorId));
         return sectorMapper.toResponseDTO(sector);
+    }
+
+    public List<SectorResponseDTO> getByYardId(Long yardId) {
+        List<Sector> sectors = sectorRepository.findByYard_YardId(yardId);
+        if (sectors.isEmpty()) {
+            throw new SectorNotFoundException(yardId);
+        }
+        return sectorMapper.toResponseDTOList(sectors);
     }
 
     public SectorResponseDTO update(Long sectorId, SectorRequestDTO dto) {
@@ -56,9 +64,8 @@ public class SectorService {
         MotoYard yard = motoYardRepository.findById(dto.getYardId())
                 .orElseThrow(() -> new MotoYardNotFoundException(dto.getYardId()));
 
-       sectorMapper.updateEntityFromDTO(dto, sector);
+        sectorMapper.updateEntityFromDTO(dto, sector);
 
-       sector.setYard(yard);
 
        Sector updated = sectorRepository.save(sector);
 

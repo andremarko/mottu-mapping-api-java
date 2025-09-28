@@ -75,6 +75,11 @@ public class MotoService {
         return motoMapper.toResponseDTO(moto);
     }
 
+    public Page<MotoResponseDTO> getBySector_YardId(Long yardId, Pageable pageable) {
+        return motoRepository.findBySector_Yard_YardId(yardId, pageable)
+                .map(motoMapper::toResponseDTO);
+    }
+
     @CachePut(value = "motos", key = "#result.motorcycleId")
     @CacheEvict(value = "motosAll", allEntries = true)
     public MotoResponseDTO update(Long motoId, MotoRequestDTO dto) {
