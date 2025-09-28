@@ -235,10 +235,12 @@
                 th:style="'background:' + ${sector.colorRgb}"></span>
         </td>
         <td>
-          <form th:action="@{'/admin/deleta-setor/' + ${sector.sectorId}}" method="post" class="inline-form">
-            <button type="submit" class="btn btn-delete" onclick="return confirm('Deseja realmente deletar este setor? Todas as motos nele cadastrados serão deletados')">Deletar</button>
-          </form>
-          <a th:href="@{'/admin/edita-setor/' + ${sector.sectorId}}" class="btn">Editar</a>
+          <div class="inline-form">
+            <a th:href="@{'/admin/edita-setor/' + ${sector.sectorId}}" class="btn">Editar</a>
+            <form th:action="@{'/admin/deleta-setor/' + ${sector.sectorId}}" method="post">
+              <button type="submit" class="btn btn-delete" onclick="return confirm('Deseja realmente deletar este setor? Todas as motos nele cadastrados serão deletados')">Deletar</button>
+            </form>
+          </div>
         </td>
       </tr>
       <tr th:if="${#lists.isEmpty(sectors)}">
