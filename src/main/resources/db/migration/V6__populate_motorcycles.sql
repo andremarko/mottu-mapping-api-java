@@ -1,0 +1,43 @@
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO001', '10.101,-20.101', 1, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO002', '10.102,-20.105', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO003', '10.103,-20.108', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO004', '10.104,-20.112', 2, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO005', '10.105,-20.115', 1, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO006', '10.106,-20.118', 3, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO007', '10.107,-20.120', 1, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO008', '10.108,-20.123', 2, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO009', '10.109,-20.126', 3, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO010', '10.110,-20.129', 1, 2);
+
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO011', '10.111,-20.132', 2, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO012', '10.112,-20.135', 3, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO013', '10.113,-20.138', 1, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO014', '10.114,-20.141', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO015', '10.115,-20.144', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO016', '10.116,-20.147', 1, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO017', '10.117,-20.150', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO018', '10.118,-20.153', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO019', '10.119,-20.156', 1, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO020', '10.120,-20.159', 2, 1);
+
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO021', '10.121,-20.162', 3, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO022', '10.122,-20.165', 1, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO023', '10.123,-20.168', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO024', '10.124,-20.171', 3, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO025', '10.125,-20.174', 1, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO026', '10.126,-20.177', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO027', '10.127,-20.180', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO028', '10.128,-20.183', 1, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO029', '10.129,-20.186', 2, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO030', '10.130,-20.189', 3, 2);
+
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO031', '10.131,-20.192', 1, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO032', '10.132,-20.195', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO033', '10.133,-20.198', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO034', '10.134,-20.201', 1, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO035', '10.135,-20.204', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO036', '10.136,-20.207', 3, 4);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO037', '10.137,-20.210', 1, 1);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO038', '10.138,-20.213', 2, 3);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO039', '10.139,-20.216', 3, 2);
+INSERT INTO TB_MOTORCYCLE (plate, coordinates, model_id, sector_id) VALUES ('MOTO040', '10.140,-20.219', 1, 1);
