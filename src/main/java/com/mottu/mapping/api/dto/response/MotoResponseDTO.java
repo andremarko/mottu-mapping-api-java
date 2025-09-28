@@ -12,6 +12,6 @@ public class MotoResponseDTO {
  private Long motorcycleId;
  private String plate;
  private String coordinates;
- private Long modelId;
- private Long sectorId;
+ private ModelResponseDTO model;
+ private SectorResponseDTO sector;
 }

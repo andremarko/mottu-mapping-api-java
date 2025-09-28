@@ -13,5 +13,4 @@
         private String description;
         private String colorRgb;
         private String colorName;
-
     }
