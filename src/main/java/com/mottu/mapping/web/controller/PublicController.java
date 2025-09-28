@@ -23,4 +23,9 @@ public class PublicController {
 
     @GetMapping("/about")
     public String getAbout() {return "about";}
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403";
+    }
 }
