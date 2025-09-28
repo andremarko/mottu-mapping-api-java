@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ModelMapper.class, SectorMapper.class})
 public interface MotoMapper {
     MotoResponseDTO toResponseDTO(Moto moto);
     @Mapping(target = "model", ignore = true)
