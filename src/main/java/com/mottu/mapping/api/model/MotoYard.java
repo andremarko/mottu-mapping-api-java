@@ -16,8 +16,14 @@ public class MotoYard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="yard_id")
     private Long yardId;
+    @Column(name="branch_name", nullable = false)
+    private String branchName;
     @Column(nullable = false)
-    private String description;
+    private String address;
+    @Column(nullable = false)
+    private String city;
+    @Column(nullable = false)
+    private String state;
     @Column(nullable = false)
     private Integer capacity;
     @OneToMany(mappedBy = "yard", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
