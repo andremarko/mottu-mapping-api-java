@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar setor</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<header th:insert="fragments :: header(false)"></header>
+<main>
+    <h2 class="page-title">Editar Setor - Unidade São Paulo</h2>
+    <div style="display: flex; flex-direction: row; gap: 40px; align-items: flex-start; justify-content: center;">
+        <div class="form-card" th:replace="fragments :: sectorForm(${sector}, '/admin/edita-setor/' + ${sector.sectorId}, 'Salvar')"></div>
+    </div>
+</main>
+<footer th:insert="fragments :: footer"></footer>
+</body>
+</html>
