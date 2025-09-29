@@ -42,98 +42,164 @@ mais agildiade e precisão.
 
 * Integrantes:
   - André Geraldi Marcolongo - RM555285 - 2TDSPV
+  - Felipe Gabriel Lopes Clarindo - RM554547 - 2TDSPF
 
 ## Estrutura do projeto
-Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Expõe endpoints REST para operações CRUD relacionadas ao gerenciamento de motos e setorização de pátios, como parte de um sistema de visão computacional. Persistência em banco de dados Oracle.
+Aplicação backend desenvolvida em Java utilizando o framework Spring Boot, estruturada com Maven. O sistema gerencia operações de cadastro, edição e exclusão de motos, setores, operadores e pátios, integrando funcionalidades de visão computacional para mapeamento de veículos. Os dados são persistidos em banco de dados, com controle de versões e migrações gerenciado pelo Flyway. A interface administrativa e operacional é construída com Thymeleaf, oferecendo páginas dinâmicas para CRUD de entidades e visualização de informações. O projeto inclui autenticação baseada em usuários e papéis (admin e operador), e separa camadas de API e web.
 ### Diretórios, camadas e arquivos do projeto
 ```graphql
-├── src/
-└── main/
-    ├── java/
-    │   └── com/
-    │       └── mottu/
-    │           └── mapping/
-    │               └── api/
-    │                   ├── MottuMappingApiApplication.java       # Classe principal Spring Boot
-    │                   │
-    │                   ├── controller/           # Camada de controle (endpoints REST)
-    │                   │   ├── ModelController.java
-    │                   │   ├── MotoController.java
-    │                   │   ├── MotoYardController.java
-    │                   │   └── SectorController.java
-    │                   │
-    │                   ├── dto/                  # Objetos de transferência de dados
-    │                   │   ├── request/
-    │                   │   │   ├── ModelRequestDTO.java
-    │                   │   │   ├── MotoRequestDTO.java
-    │                   │   │   ├── MotoYardRequestDTO.java
-    │                   │   │   └── SectorRequestDTO.java
-    │                   │   │
-    │                   │   └── response/
-    │                   │       ├── ModelResponseDTO.java
-    │                   │       ├── MotoResponseDTO.java
-    │                   │       ├── MotoYardResponseDTO.java
-    │                   │       └── SectorResponseDTO.java
-    │                   │
-    │                   ├── exception/            # Tratamento de exceções personalizadas
-    │                   │   ├── ApiExceptionHandler.java
-    │                   │   ├── ModelNotFoundException.java
-    │                   │   ├── MotoNotFoundException.java
-    │                   │   ├── MotoYardNotFoundException.java
-    │                   │   └── SectorNotFoundException.java
-    │                   │
-    │                   ├── model/                # Entidades JPA (mapeamento com o banco)
-    │                   │   ├── Model.java
-    │                   │   ├── Moto.java
-    │                   │   ├── MotoYard.java
-    │                   │   └── Sector.java
-    │                   │
-    │                   ├── repository/           # Interfaces JPA para acesso ao banco
-    │                   │   ├── ModelRepository.java
-    │                   │   ├── MotoRepository.java
-    │                   │   ├── MotoYardRepository.java
-    │                   │   └── SectorRepository.java
-    │                   │
-    │                   └── service/              # Camada de serviço (lógica de negócio)
-    │                       ├── ModelService.java
-    │                       ├── MotoService.java
-    │                       ├── MotoYardService.java
-    │                       └── SectorService.java
-    │
-    └── resources/
-        └── application.properties                # Configurações da aplicação (DB, portas, etc.)
-
+├───src
+│   ├───main
+│   │   ├───java
+│   │   │   └───com
+│   │   │       └───mottu
+│   │   │           └───mapping
+│   │   │               │   MottuMappingApiApplication.java
+│   │   │               │
+│   │   │               ├───api
+│   │   │               │   ├───config
+│   │   │               │   ├───controller
+│   │   │               │   │       ModelController.java
+│   │   │               │   │       MotoController.java
+│   │   │               │   │       MotoYardController.java
+│   │   │               │   │       SectorController.java
+│   │   │               │   │       UserController.java
+│   │   │               │   │
+│   │   │               │   ├───dto
+│   │   │               │   │   ├───request
+│   │   │               │   │   │       ModelRequestDTO.java
+│   │   │               │   │   │       MotoRequestDTO.java
+│   │   │               │   │   │       MotoYardRequestDTO.java
+│   │   │               │   │   │       SectorRequestDTO.java
+│   │   │               │   │   │       UserRequestDTO.java
+│   │   │               │   │   │
+│   │   │               │   │   └───response
+│   │   │               │   │           ModelResponseDTO.java
+│   │   │               │   │           MotoResponseDTO.java
+│   │   │               │   │           MotoYardResponseDTO.java
+│   │   │               │   │           SectorResponseDTO.java
+│   │   │               │   │           UserResponseDTO.java
+│   │   │               │   │
+│   │   │               │   ├───exception
+│   │   │               │   │       ApiExceptionHandler.java
+│   │   │               │   │       ModelNotFoundException.java
+│   │   │               │   │       MotoNotFoundException.java
+│   │   │               │   │       MotoYardNotFoundException.java
+│   │   │               │   │       SectorNotFoundException.java
+│   │   │               │   │       UserNotFoundException.java
+│   │   │               │   │
+│   │   │               │   ├───mapper
+│   │   │               │   │       ModelMapper.java
+│   │   │               │   │       MotoMapper.java
+│   │   │               │   │       MotoYardMapper.java
+│   │   │               │   │       SectorMapper.java
+│   │   │               │   │
+│   │   │               │   ├───model
+│   │   │               │   │       Model.java
+│   │   │               │   │       Moto.java
+│   │   │               │   │       MotoYard.java
+│   │   │               │   │       Sector.java
+│   │   │               │   │       User.java
+│   │   │               │   │
+│   │   │               │   ├───repository
+│   │   │               │   │       ModelRepository.java
+│   │   │               │   │       MotoRepository.java
+│   │   │               │   │       MotoYardRepository.java
+│   │   │               │   │       SectorRepository.java
+│   │   │               │   │       UserRepository.java
+│   │   │               │   │
+│   │   │               │   ├───security
+│   │   │               │   │       SecurityConfig.java
+│   │   │               │   │       UserDetailImplementation.java
+│   │   │               │   │       UserDetailServiceImplementation.java
+│   │   │               │   │
+│   │   │               │   ├───service
+│   │   │               │   │       ModelService.java
+│   │   │               │   │       MotoService.java
+│   │   │               │   │       MotoYardService.java
+│   │   │               │   │       SectorService.java
+│   │   │               │   │       UserService.java
+│   │   │               │   │
+│   │   │               │   └───util
+│   │   │               │           EntityPair.java
+│   │   │               │
+│   │   │               └───web
+│   │   │                   └───controller
+│   │   │                           AdminController.java
+│   │   │                           OperatorController.java
+│   │   │                           PublicController.java
+│   │   │
+│   │   └───resources
+│   │       │   application.properties
+│   │       │   env.properties
+│   │       │
+│   │       ├───db
+│   │       │   └───migration
+│   │       │           V1__create_tables.sql
+│   │       │           V2__insert__users.sql
+│   │       │           V3__insert_moto_models.sql
+│   │       │           V4__insert_moto_yards.sql
+│   │       │           V5__insert_sectors.sql
+│   │       │           V6__populate_motorcycles.sql
+│   │       │
+│   │       ├───static
+│   │       │       style.css
+│   │       │
+│   │       └───templates
+│   │           │   403.html
+│   │           │   fragments.html
+│   │           │   index.html
+│   │           │
+│   │           ├───admin
+│   │           │       cadastra-moto.html
+│   │           │       cadastra-operador.html
+│   │           │       cadastra-setor.html
+│   │           │       dashboard.html
+│   │           │       edita-setor.html
+│   │           │       moto-details.html
+│   │           │       users.html
+│   │           │
+│   │           └───operator
+│   │                   cadastra-moto.html
+│   │                   dashboard.html
+│   │                   moto-details.html
 ```
 ## Dependências instaladas
 ``` xml
 <dependencies>
-    		<dependency>
+	
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+		<!-- Mapper -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
 		</dependency>
+
+		<!-- Data Persistence -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc11</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
-			<scope>runtime</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.sqlserver</groupId>-->
+<!--			<artifactId>mssql-jdbc</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -149,24 +215,61 @@ Aplicação backend desenvolvida com Spring Boot (Java) e arquitetura Maven. Exp
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+		<!-- Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Flyway -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-oracle</artifactId>
+			<version>10.20.1</version>
+		</dependency>
+
+		<!-- Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- Thymeleaf Spring Security extras -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+    </dependencies>
 </dependencies>
 ```
-- `spring-boot-starter-data-jpa`: Suporte a banco de dados via JPA/Hibernate.
-- `spring-boot-devtools`: Hot reload para facilitar o desenvolvimento.
-- `ojdbc11`: Driver JDBC para conectar ao banco Oracle.
-- `mysql-connector-java`: MySQL Connector - Conexão com MySQL DB
-- `lombok`: Gera automaticamente getters, setters e construtores.
-- `spring-boot-starter-test`: Ferramentas para testes automatizados.
-- `spring-boot-starter-validation`: Validação de dados via anotações.
-- `spring-boot-starter-cache`: Suporte a cache para melhorar desempenho.
-- `spring-boot-starter-web`: Suporte para APIs REST e servidor embutido.
-- `spring-boot-starter-actuator`: Monitoramento e métricas da aplicação.
+- **spring-boot-starter-data-jpa** → Suporte a banco de dados via JPA/Hibernate.  
+- **mapstruct** → Framework de *mapper* para conversão entre DTOs e entidades.  
+- **ojdbc11** → Driver JDBC para conectar ao banco Oracle.  
+- **lombok** → Geração automática de getters, setters, construtores e *builders*.  
+- **spring-boot-starter-test** → Ferramentas para testes automatizados (JUnit, Mockito, etc.).  
+- **spring-boot-starter-validation** → Validação de dados via anotações (ex: `@NotNull`, `@Email`).  
+- **spring-boot-starter-cache** → Suporte a cache para melhorar desempenho da aplicação.  
+- **spring-boot-devtools** → Hot reload para facilitar o desenvolvimento.  
+- **spring-boot-starter-web** → Suporte para APIs REST e servidor embutido (Tomcat).  
+- **spring-boot-starter-actuator** → Monitoramento e métricas da aplicação.  
+- **spring-boot-starter-security** → Segurança e autenticação/autorização na aplicação.  
+- **flyway-database-oracle** → Versionamento e migração de banco de dados Oracle.   
+- **spring-boot-starter-thymeleaf** → Suporte ao motor de templates Thymeleaf.  
+- **thymeleaf-extras-springsecurity6** → Integração do Thymeleaf com Spring Security.
 ---
 ## Endpoints
 ### Entidade MotoYard 
