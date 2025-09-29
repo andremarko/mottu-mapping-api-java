@@ -33,7 +33,7 @@
   - [Documentação de Endpoints no Insomnia](#documentação-de-endpoints-no-insomnia)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
-- [Deploy do projeto](#deploy-do-projeto)
+- [Execução do projeto](#execução-do-projeto-em-máquina-local)
 
 ## Sobre o Mottu Mapping
 
@@ -629,7 +629,7 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
-## Execução do projeto em **máquina local**
+## Execução do projeto em máquina local
 
 ``` bash
 git clone https://github.com/andremarko/mottu-mapping-api-java
