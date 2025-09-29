@@ -629,46 +629,43 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
-## Deploy do projeto
+## Execução do projeto em **máquina local**
 
 ``` bash
 git clone https://github.com/andremarko/mottu-mapping-api-java
 cd mottu-mapping-api-java
 ```
-### Na pasta do projeto crie:
+### No diretório /src/resources crie:
 
 ```bash
-touch .env
+touch env.properties
 ```
-Dentro do .env insira as seguintes variáveis e seus respectivos valores, por exemplo:
+Dentro do env.properties insira as seguintes variáveis e seus respectivos valores, por exemplo:
 
 ```
-MYSQL_DATABASE=mottu-mapping
-MYSQL_ROOT_PASSWORD=suaSenhaRoot
-MYSQL_USER=mapping-service
-MYSQL_PASSWORD=suaSenha
+JDBC_CONNECTION_STRING=connectionString
+DB_ADMIN=seuUsuarioDb
+DB_PASSWORD=suaSenha
 
-SPRING_DATASOURCE_URL=jdbc:mysql://mottu-mapping-db:3306/mottu-mapping
 ```
-### Após criação do .env, execute o build:
+### Após criação do env.properties, execute:
 
-``` bash
-docker compose up -d --build -t
 ```
-#### Aguarde a finalização do deploy dos contêineres
-<h4> Após conclusão do deploy, ainda dentro da pasta do projeto, visualize os logs de execução: </h4> 
+mvn spring-boot:run
+```
 
-```bash
-docker compose logs -f <container-name> 
+### Acesse via navegador: `localhost:8080/`
+
+### Para acessar o dashboard do administrador, acesse com o usuário ADMINISTRADOR e senhas cadastrados via script versionado no Flyway (V2): 
+
 ```
-ou
-```bash
-docker compose logs -f # para visualizar logs de todos os contêineres
+	username: admin
+	senha: admin123
 ```
-#### Caso queira acessar o banco de dados, execute:
-```bash
-docker compose exec -it mottu-mapping-db mysql -u mapping-service -p
+### Para acessar o dashboard do operador, acesse com o usuário OPERADOR e senhas cadastrados via script versionado no Flyway (V2): 
 ```
-Basta inserir a senha do usuário comum e você terá acesso interativo a instância do MySQL
+username: operator
+senha: oper123
+```
 
 
