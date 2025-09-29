@@ -642,11 +642,12 @@ touch env.properties
 ```
 Dentro do env.properties insira as seguintes variáveis e seus respectivos valores, por exemplo:
 
+**CONFIGURADO PARA PERSISTIR EM ORACLE DB**
+
 ```
 JDBC_CONNECTION_STRING=connectionString
 DB_ADMIN=seuUsuarioDb
 DB_PASSWORD=suaSenha
-
 ```
 ### Após criação do env.properties, execute:
 
@@ -659,8 +660,8 @@ mvn spring-boot:run
 ### Para acessar o dashboard do administrador, acesse com o usuário ADMINISTRADOR e senhas cadastrados via script versionado no Flyway (V2): 
 
 ```
-	username: admin
-	senha: admin123
+username: admin
+senha: admin123
 ```
 ### Para acessar o dashboard do operador, acesse com o usuário OPERADOR e senhas cadastrados via script versionado no Flyway (V2): 
 ```
