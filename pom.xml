@@ -97,10 +97,10 @@
 
 		<!--</dependency>-->
 		<!-- Flyway -->
+
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-database-oracle</artifactId>
-			<version>10.20.1</version>
+			<artifactId>flyway-sqlserver</artifactId>
 		</dependency>
 		<!-- Swagger -->
 		<dependency>
