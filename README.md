@@ -642,7 +642,7 @@ touch env.properties
 ```
 Dentro do env.properties insira as seguintes variáveis e seus respectivos valores, por exemplo:
 
-**CONFIGURADO PARA PERSISTIR EM ORACLE DB**
+**CONFIGURADO PARA PERSISTIR EM SQL SERVER**
 
 ```
 JDBC_CONNECTION_STRING=connectionString
