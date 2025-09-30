@@ -23,6 +23,10 @@ jobs:
     
     - name: Build with Maven
       run: mvn clean install
+      env:
+        JDBC_CONNECTION_STRING: ${{ secrets.JDBC_CONNECTION_STRING }}
+        DB_ADMIN: ${{ secrets.DB_ADMIN }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
