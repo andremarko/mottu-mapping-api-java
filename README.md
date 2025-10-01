@@ -713,6 +713,7 @@ Na página inicial, haverá dois botões (dashboard do operador e dashboard do a
 Ambos os usuários de ambas ROLES (**ROLE_OPERATOR e ROLE_ADMIN**) estão cadastrados na tabela `tb_user`.
 A tabela é populada automaticamente no build do projeto. Cheque o diretório `./src/main/resources/db/migration`.
 Nesse diretório fica o versionamento das tabelas pelo Flyway. 
+Todas as tabelas são criadas e populadas no build do projeto.
 
 Acessos:
 
