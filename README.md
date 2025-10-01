@@ -33,7 +33,8 @@
   - [Documentação de Endpoints no Insomnia](#documentação-de-endpoints-no-insomnia)
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
-- [Execução do projeto](#execução-do-projeto-em-máquina-local)
+- [Execução do projeto localmente](#execução-do-projeto-em-máquina-local)
+- [Deploy Azure Web App via Github Actions(#deploy-automático-do-web-app-java-no-azure-via-github-actions)
 
 ## Sobre o Mottu Mapping
 
@@ -629,6 +630,8 @@ A coleção de APIs está disponível em:
   <img src="https://github.com/user-attachments/assets/7fda10a0-d06f-4ddc-82cf-542877e11494" alt="relational_mottu_mapping" />
 </div>
 
+---
+
 ## Execução do projeto em máquina local
 
 ``` bash
@@ -655,6 +658,7 @@ DB_PASSWORD=suaSenha
 mvn spring-boot:run
 ```
 
+
 ### Acesse via navegador: `localhost:8080/`
 
 ### Para acessar o dashboard do administrador, acesse com o usuário ADMINISTRADOR e senhas cadastrados via script versionado no Flyway (V2): 
@@ -668,5 +672,59 @@ senha: admin123
 username: operator
 senha: oper123
 ```
+
+---
+
+## Deploy automático do Web App Java no Azure via Github Actions
+
+```
+git clone https://github.com/andremarko/mottu-mapping-api-java
+cd mottu-mapping-api-java/deploys
+```
+
+### Scripts de execução:
+
+#### env-config.sh
+Exporta variáveis de ambiente com configs do Azure (SQL, WebApp, GitHub) e monta o JDBC_CONNECTION_STRING -> variável que serve para definir a conexão com o banco de dados (`src/main/resources/application.properties`)
+
+#### 01-create-sqlserver-instance.sh
+Cria no Azure um Resource Group, SQL Server, banco de dados e configura firewall (Azure e IP local).
+No fim, lista os recursos provisionados.
+
+#### 02-deploy-mottu-mapping.sh
+Esse script cria o App Service Plan e o Web App no Azure, configura permissões e variáveis de ambiente (DB e JDBC), reinicia o app e ativa o deploy via GitHub Actions.
+
+#### 03-set-gh-secrets.sh
+Esse script garante login no GitHub CLI e cria secrets no repositório (JDBC connection string, usuário e senha do banco).
+
+**Ordem de execução:** 
+- `01-create-sqlserver-instance.sh`;
+- `02-deploy-mottu-mapping.sh`;
+- `03-set-gh-secrets.sh`
+
+Não há a necessidade de executar o `env-config.sh`, ele só define as variáveis que são utilizadas nos scripts.
+
+Após execução acesse: `https://mottu-mapping-mvc.azurewebsites.net/`
+
+Na página inicial, haverá dois botões (dashboard do operador e dashboard do administrador)
+
+**Escolha um para acessar**
+
+Ambos os usuários de ambas ROLES (**ROLE_OPERATOR e ROLE_ADMIN**) estão cadastrados na tabela `tb_user`.
+A tabela é populada automaticamente no build do projeto. Cheque o diretório `./src/main/resources/db/migration`.
+Nesse diretório fica o versionamento das tabelas pelo Flyway. 
+
+Acessos:
+
+| Username | Senha | 
+| -------- | ----- | 
+| admin    | admin123 |
+| operator | oper123 |      
+
+Com esses acessos é possível acessar todos os recursos que cada usuário tem, tanto quanto um operador quanto o administrador de um pátio.
+
+
+
+
 
 
