@@ -34,7 +34,7 @@
 - [Tabela de Endpoints](#tabela-de-endpoints)
 - [Modelo Relacional](#modelo-relacional)
 - [Execução do projeto localmente](#execução-do-projeto-em-máquina-local)
-- [Deploy Azure Web App via Github Actions(#deploy-automático-do-web-app-java-no-azure-via-github-actions)
+- [Deploy Azure Web App via Github Actions](#deploy-automático-do-web-app-java-no-azure-via-github-actions)
 
 ## Sobre o Mottu Mapping
 
