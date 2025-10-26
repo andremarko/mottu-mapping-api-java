@@ -4,38 +4,46 @@ import com.mottu.mapping.api.dto.request.UserRequestDTO;
 import com.mottu.mapping.api.dto.response.UserResponseDTO;
 import com.mottu.mapping.api.exception.UserNotFoundException;
 import com.mottu.mapping.api.repository.UserRepository;
+import com.mottu.mapping.api.repository.UserRepositoryOracle;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mottu.mapping.api.model.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+@Profile({"oracle", "sqlserver"})
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
+    private UserRepositoryOracle userRepositoryOracle;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(username));
+    @Autowired
+    private Environment environment;
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole())
-                .build();
+    public boolean validateUser(String username, String password) {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("oracle")) {
+            BigDecimal result = userRepositoryOracle.validateUser(username, password);
+            return result != null && result.intValue() == 1;
+        } else {
+            throw new UnsupportedOperationException("ValidateUser only supported for Oracle persistence");
+        }
     }
 
+    // lista todos operadores
     public List<UserResponseDTO> getOperatorUsers() {
         List<User> users = userRepository.findByRole("ROLE_OPERATOR");
         return users.stream()
@@ -43,6 +51,7 @@ public class UserService implements UserDetailsService {
                 .toList();
     }
 
+    // usado para admin cadastrar operadores
     public UserResponseDTO saveOperator(UserRequestDTO dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
@@ -52,6 +61,7 @@ public class UserService implements UserDetailsService {
         return new UserResponseDTO(savedUser.getUserId(), savedUser.getUsername(), savedUser.getPassword(), savedUser.getRole());
     }
 
+    // admin deleta operadores
     public void deleteOperator(Long userId) {
         if (!userRepository.existsById(userId)) {
             throw new UserNotFoundException("User ID " + userId + " not found.");
