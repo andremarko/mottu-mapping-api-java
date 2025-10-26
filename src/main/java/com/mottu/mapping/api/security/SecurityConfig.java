@@ -18,6 +18,17 @@ public class SecurityConfig {
     private UserDetailServiceImplementation userDetailsService;
 
     @Bean
+    public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+        http
+        .securityMatcher("/api/**")
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+                .anyRequest().permitAll()
+        );
+        return http.build();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
