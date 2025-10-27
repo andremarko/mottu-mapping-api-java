@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -39,6 +40,12 @@ public class MotoController {
     @PutMapping("/{id}")
     public MotoResponseDTO update(@PathVariable Long id,@Valid @RequestBody MotoRequestDTO dto) {
         return motoService.update(id, dto);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<String> getAllMotorcyclesJoin() {
+        String jsonResult = motoService.getAllMotorcyclesJoin();
+        return ResponseEntity.ok(jsonResult);
     }
 
     @DeleteMapping("/{id}")

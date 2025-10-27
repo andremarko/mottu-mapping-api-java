@@ -3,6 +3,7 @@ package com.mottu.mapping.api.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +19,19 @@ public class SecurityConfig {
     private UserDetailServiceImplementation userDetailsService;
 
     @Bean
+    @Order(1)
+    public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+        http
+        .securityMatcher("/api/**")
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+                .anyRequest().permitAll()
+        );
+        return http.build();
+    }
+
+    @Bean
+    @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize

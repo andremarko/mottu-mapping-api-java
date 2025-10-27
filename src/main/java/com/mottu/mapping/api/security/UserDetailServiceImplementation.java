@@ -32,5 +32,4 @@ public class UserDetailServiceImplementation implements UserDetailsService {
                 List.of(new SimpleGrantedAuthority(role))
         );
     }
-
 }

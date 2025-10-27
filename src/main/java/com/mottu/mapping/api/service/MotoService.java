@@ -11,13 +11,18 @@ import com.mottu.mapping.api.model.Moto;
 import com.mottu.mapping.api.model.Sector;
 import com.mottu.mapping.api.repository.ModelRepository;
 import com.mottu.mapping.api.repository.MotoRepository;
+import com.mottu.mapping.api.repository.MotoRepositoryOracle;
 import com.mottu.mapping.api.repository.SectorRepository;
 import com.mottu.mapping.api.util.EntityPair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -28,6 +33,9 @@ public class MotoService {
     private MotoRepository motoRepository;
 
     @Autowired
+    private MotoRepositoryOracle motoRepositoryOracle;
+
+    @Autowired
     private ModelRepository modelRepository;
 
     @Autowired
@@ -36,7 +44,18 @@ public class MotoService {
     @Autowired
     private MotoMapper motoMapper;
 
-    // helper, para evitar bloat de código. Retorna uma tupla com Model e Sector
+    @Autowired
+    private Environment environment;
+
+    public String getAllMotorcyclesJoin() {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("oracle")) {
+            String result = motoRepositoryOracle.procJoinJson();
+            return result;
+        } else {
+            throw new UnsupportedOperationException("getAllMotorcycleBySectorAndYard only supported for Oracle persistence");
+        }
+    }
+
     private EntityPair<Model, Sector, Object> findModelAndSectorById(Long modelId, Long sectorId) {
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new ModelNotFoundException(modelId));
@@ -47,7 +66,6 @@ public class MotoService {
         return new EntityPair<>(model, sector, Optional.empty());
     }
 
-    // Cache pelo ID da moto
     @CachePut(value = "motos", key = "#result.motorcycleId")
     @CacheEvict(value= "motosAll", allEntries = true)
     public MotoResponseDTO save(MotoRequestDTO dto) {
