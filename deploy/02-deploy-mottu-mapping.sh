@@ -1,5 +1,9 @@
 #!/bin/bash
 
+JDBC_CONNECTION_STRING=$(az sql db show-connection-string --client jdbc --name $DB_NAME --server $SERVER_NAME --output tsv)
+
+az sql db show-connection-string --client jdbc --name $DB_NAME --server $SERVER_NAME --output tsv
+
 az appservice plan create --name $APP_SERVICE_PLAN --resource-group $RESOURCE_GROUP --location $LOCATION --sku B1 --is-linux
 
 az webapp create --name "$WEBAPP_NAME" --resource-group $RESOURCE_GROUP --plan $APP_SERVICE_PLAN --runtime $RUNTIME
