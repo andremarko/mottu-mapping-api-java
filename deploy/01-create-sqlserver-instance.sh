@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ./env-config.sh
-
 echo "Vericando login no Azure..."
 if ! az account show; then
     echo "Login não encontrado, executando az login..."
@@ -9,15 +7,12 @@ if ! az account show; then
 fi 
 
 # === Criando Resource Group
-
 az group create --name $RESOURCE_GROUP --location $LOCATION 
 echo "Resource Group criado com sucesso"
-
 
 # === Criando SQL Server
 echo "CRIANDO SERVIDOR"
 az sql server create -l $LOCATION -g $RESOURCE_GROUP -n $SERVER_NAME -u $DB_ADMIN -p $DB_PASSWORD --enable-public-network true 
-
 
 # === Criando banco de dados
 echo "CRIANDO BANCO DE DADOS"
