@@ -32,7 +32,7 @@ public class MotoService {
     @Autowired
     private MotoRepository motoRepository;
 
-    @Autowired
+    @Autowired(required = false)
     private MotoRepositoryOracle motoRepositoryOracle;
 
     @Autowired
@@ -48,12 +48,10 @@ public class MotoService {
     private Environment environment;
 
     public String getAllMotorcyclesJoin() {
-        if (Arrays.asList(environment.getActiveProfiles()).contains("oracle")) {
-            String result = motoRepositoryOracle.procJoinJson();
-            return result;
-        } else {
-            throw new UnsupportedOperationException("getAllMotorcycleBySectorAndYard only supported for Oracle persistence");
+        if (motoRepositoryOracle == null) {
+            throw new UnsupportedOperationException("MotoRepositoryOracle only available on 'oracle' profile");
         }
+        return motoRepositoryOracle.procJoinJson();
     }
 
     private EntityPair<Model, Sector, Object> findModelAndSectorById(Long modelId, Long sectorId) {
