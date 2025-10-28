@@ -1,13 +1,11 @@
 package com.mottu.mapping.api.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class LoginRequestDTO {
     private String username;
     private String password;
