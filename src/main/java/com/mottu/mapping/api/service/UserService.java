@@ -25,7 +25,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+    @Autowired(required = false)
     private UserRepositoryOracle userRepositoryOracle;
 
     @Autowired
@@ -35,12 +35,11 @@ public class UserService {
     private Environment environment;
 
     public boolean validateUser(String username, String password) {
-        if (Arrays.asList(environment.getActiveProfiles()).contains("oracle")) {
-            BigDecimal result = userRepositoryOracle.validateUser(username, password);
-            return result != null && result.intValue() == 1;
-        } else {
+        if (userRepositoryOracle == null) {
             throw new UnsupportedOperationException("ValidateUser only supported for Oracle persistence");
         }
+        BigDecimal result = userRepositoryOracle.validateUser(username, password);
+        return result != null && result.intValue() == 1;
     }
 
     // lista todos operadores
