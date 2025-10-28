@@ -14,12 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@Profile({"oracle", "sqlserver"})
 public class UserService {
 
     @Autowired

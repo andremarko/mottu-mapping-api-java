@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Profile({"oracle", "sqlserver"})
 public interface MotoRepository extends JpaRepository<Moto, Long> {
     Page<Moto> findByPlate(String plate, Pageable pageable);
     Page<Moto> findBySector_SectorId(Long sectorId, Pageable pageable);
