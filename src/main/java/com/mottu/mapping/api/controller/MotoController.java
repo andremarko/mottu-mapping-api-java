@@ -44,6 +44,10 @@ public class MotoController {
 
     @GetMapping("/all")
     public ResponseEntity<String> getAllMotorcyclesJoin() {
+        String activeProfile = System.getProperty("spring.profiles.active");
+        if (!activeProfile.equals("oracle")) {
+            return ResponseEntity.notFound().build();
+        }
         String jsonResult = motoService.getAllMotorcyclesJoin();
         return ResponseEntity.ok(jsonResult);
     }

@@ -2,6 +2,8 @@ package com.mottu.mapping.repository;
 
 import com.mottu.mapping.api.repository.UserRepositoryOracle;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 @DataJpaTest
 @ActiveProfiles("oracle")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@EnabledIfEnvironmentVariable(named = "SPRING_PROFILES_ACTIVE", matches = "oracle")
 public class UserRepositoryOracleTest {
 
     @Autowired

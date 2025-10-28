@@ -22,7 +22,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<?> login (@RequestBody LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequestDTO) {
+        String activeProfile = System.getProperty("spring.profiles.active");
+        if (!"oracle".equals(activeProfile)) {
+            return ResponseEntity.notFound().build();
+        }
+
         String username = loginRequestDTO.getUsername();
         String password = loginRequestDTO.getPassword();
 
