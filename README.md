@@ -168,93 +168,110 @@ Aplicação backend desenvolvida em Java utilizando o framework Spring Boot, est
 ## Dependências instaladas
 ``` xml
 <dependencies>
-	
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <!-- Mapper -->
+    <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>1.5.5.Final</version>
+    </dependency>
+    <!-- Data Persistence -->
+    <dependency>
+        <groupId>com.oracle.database.jdbc</groupId>
+        <artifactId>ojdbc11</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    
+    <!-- Lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <optional>true</optional>
+    </dependency>
+    
+    <!-- Spring -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>5.18.0</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <scope>runtime</scope>
+        <optional>true</optional>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 
-		<!-- Mapper -->
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>1.5.5.Final</version>
-		</dependency>
+    <!-- Security -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 
-		<!-- Data Persistence -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc11</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.microsoft.sqlserver</groupId>-->
-<!--			<artifactId>mssql-jdbc</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
+    <!-- Flyway -->
+    <dependency>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-sqlserver</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-database-oracle</artifactId>
+    </dependency>
 
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+    <!-- Swagger -->
+    <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>2.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        <version>2.6.0</version>
+    </dependency>
 
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-		<!-- Security -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<!-- Flyway -->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-database-oracle</artifactId>
-			<version>10.20.1</version>
-		</dependency>
-
-		<!-- Thymeleaf -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<!-- Thymeleaf Spring Security extras -->
-		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
-			<version>3.1.2.RELEASE</version>
-		</dependency>
-
-    </dependencies>
+    <!-- Thymeleaf -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    
+    <!-- Thymeleaf Spring Security extras -->
+    <dependency>
+        <groupId>org.thymeleaf.extras</groupId>
+        <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+        <version>3.1.2.RELEASE</version>
+    </dependency>
 </dependencies>
 ```
 - **spring-boot-starter-data-jpa** → Suporte a banco de dados via JPA/Hibernate.  
@@ -262,12 +279,13 @@ Aplicação backend desenvolvida em Java utilizando o framework Spring Boot, est
 - **ojdbc11** → Driver JDBC para conectar ao banco Oracle.  
 - **lombok** → Geração automática de getters, setters, construtores e *builders*.  
 - **spring-boot-starter-test** → Ferramentas para testes automatizados (JUnit, Mockito, etc.).  
-- **spring-boot-starter-validation** → Validação de dados via anotações (ex: `@NotNull`, `@Email`).  
+- **spring-boot-starter-validation** → Validação de dados via anotações.  
 - **spring-boot-starter-cache** → Suporte a cache para melhorar desempenho da aplicação.  
 - **spring-boot-devtools** → Hot reload para facilitar o desenvolvimento.  
 - **spring-boot-starter-web** → Suporte para APIs REST e servidor embutido (Tomcat).  
 - **spring-boot-starter-actuator** → Monitoramento e métricas da aplicação.  
-- **spring-boot-starter-security** → Segurança e autenticação/autorização na aplicação.  
+- **spring-boot-starter-security** → Segurança e autenticação/autorização na aplicação. 
+- **flyway-database-sqlserver** → Versionamento e migração de banco de dados SQL Server.
 - **flyway-database-oracle** → Versionamento e migração de banco de dados Oracle.   
 - **spring-boot-starter-thymeleaf** → Suporte ao motor de templates Thymeleaf.  
 - **thymeleaf-extras-springsecurity6** → Integração do Thymeleaf com Spring Security.
@@ -659,7 +677,7 @@ mvn spring-boot:run
 ```
 
 
-### Acesse via navegador: `localhost:8080/`
+### Acesse via navegador: `[host]:8080/`
 
 ### Para acessar o dashboard do administrador, acesse com o usuário ADMINISTRADOR e senhas cadastrados via script versionado no Flyway (V2): 
 
@@ -697,7 +715,7 @@ Esse script cria o App Service Plan e o Web App no Azure, configura permissões 
 #### 03-set-gh-secrets.sh
 Esse script garante login no GitHub CLI e cria secrets no repositório (JDBC connection string, usuário e senha do banco).
 
-**Ordem de execução:** 
+**Ordem de execução (OLD):** 
 - `01-create-sqlserver-instance.sh`;
 - `02-deploy-mottu-mapping.sh`;
 - `03-set-gh-secrets.sh`
