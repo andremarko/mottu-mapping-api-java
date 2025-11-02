@@ -44,6 +44,7 @@ mais agildiade e precisão.
 * Integrantes:
   - André Geraldi Marcolongo - RM555285 - 2TDSPV
   - Felipe Gabriel Lopes Clarindo - RM554547 - 2TDSPF
+  - Nathália Gomes da Silva - RM559945 - 2TDSPV
 
 ## Estrutura do projeto
 Aplicação backend desenvolvida em Java utilizando o framework Spring Boot, estruturada com Maven. O sistema gerencia operações de cadastro, edição e exclusão de motos, setores, operadores e pátios, integrando funcionalidades de visão computacional para mapeamento de veículos. Os dados são persistidos em banco de dados, com controle de versões e migrações gerenciado pelo Flyway. A interface administrativa e operacional é construída com Thymeleaf, oferecendo páginas dinâmicas para CRUD de entidades e visualização de informações. O projeto inclui autenticação baseada em usuários e papéis (admin e operador), e separa camadas de API e web.
